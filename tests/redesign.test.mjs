@@ -1,0 +1,126 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+
+const pageSource = await readFile(new URL('../app/page.tsx', import.meta.url), 'utf8');
+const stylesheetSource = await readFile(new URL('../app/globals.css', import.meta.url), 'utf8');
+const menuSource = await readFile(new URL('../components/menu-showcase.tsx', import.meta.url), 'utf8');
+const reviewSource = await readFile(new URL('../components/review-wall.tsx', import.meta.url), 'utf8');
+
+test('preserves every homepage section and ordering action', () => {
+  for (const anchor of ['top', 'karte', 'smash', 'besuch']) {
+    assert.match(pageSource, new RegExp(`id="${anchor}"`));
+  }
+
+  for (const marker of [
+    'Smash mit Kante.',
+    'Finde den Smash',
+    'Drei Schritte.',
+    'Dein Tisch ist nah.',
+    'Potsdamer Str. 61',
+    'Online bestellen',
+    'Route in Google Maps',
+  ]) {
+    assert.match(pageSource, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  assert.match(pageSource, /https:\/\/bunexsmashburger\.online-karte\.com\/bunexsmashburger/);
+  assert.match(pageSource, /https:\/\/www\.google\.com\/maps\/search/);
+  assert.match(pageSource, /aria-labelledby="heroTitle"/);
+  assert.match(pageSource, /aria-labelledby="menuTitle"/);
+  assert.match(pageSource, /aria-labelledby="smashTitle"/);
+  assert.match(pageSource, /aria-labelledby="visitTitle"/);
+});
+
+test('adds original street press composition hooks', () => {
+  assert.match(pageSource, /className="heroPoster"/);
+  assert.match(pageSource, /className="streetTicker"/);
+  assert.match(pageSource, /className="sectionIndex"/);
+  assert.match(pageSource, /className="sectionFrame/);
+});
+
+test('keeps interactive component boundaries unchanged', () => {
+  assert.equal((pageSource.match(/<MenuShowcase\s*\/>/g) ?? []).length, 1);
+  assert.equal((pageSource.match(/<ReviewWall\s*\/>/g) ?? []).length, 1);
+  assert.equal((pageSource.match(/<OpeningStatus(?:\s+compact)?\s*\/>/g) ?? []).length, 3);
+});
+
+test('defines the accessible street press visual foundation', () => {
+  assert.match(stylesheetSource, /--signal-red:\s*#c83d24/i);
+  assert.match(stylesheetSource, /--poster-edge:\s*0px/);
+  assert.match(stylesheetSource, /body\s*\{[^}]*font-size:\s*clamp\(/s);
+  assert.match(stylesheetSource, /body\s*\{[^}]*font-feature-settings:[^}]*"kern"\s+1/s);
+  assert.match(stylesheetSource, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(/s);
+  assert.match(stylesheetSource, /\.heroPoster\s*\{[^}]*grid-template-columns:/s);
+  assert.match(stylesheetSource, /\.heroVisual\s*\{[^}]*aspect-ratio:/s);
+  assert.match(stylesheetSource, /\.buttonSmall\s*\{[^}]*min-height:\s*44px/s);
+  assert.match(stylesheetSource, /:focus-visible/);
+  assert.match(stylesheetSource, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+});
+
+test('collapses the street press hero and ticker without mobile overflow', () => {
+  const mobileRules = stylesheetSource.match(/@media \(max-width: 700px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
+
+  assert.match(mobileRules, /\.heroPoster\s*\{[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(mobileRules, /\.streetTicker\s*\{[^}]*min-width:\s*0[^}]*grid-template-columns:\s*1fr/s);
+});
+
+test('provides poster hooks without changing menu memory behavior', () => {
+  assert.match(menuSource, /className="memoryPanel memoryReceipt"/);
+  assert.match(menuSource, /className="productGrid posterGrid"/);
+  assert.match(menuSource, /className="priceStamp"/);
+  assert.match(menuSource, /localStorage\.getItem\(memoryKey\)/);
+  assert.match(menuSource, /localStorage\.removeItem\(memoryKey\)/);
+  assert.match(menuSource, /Nur deine letzte Kategorie und dein Favorit—lokal in diesem Browser, ohne Konto\./);
+});
+
+test('provides an original review collage with preserved attribution', () => {
+  assert.match(reviewSource, /className="reviewGrid reviewCollage"/);
+  assert.match(reviewSource, /className="sectionIndex"/);
+  assert.match(reviewSource, /<blockquote>/);
+  assert.match(stylesheetSource, /\.reviewCard blockquote\s*\{[^}]*overflow-wrap:\s*anywhere/s);
+  assert.match(stylesheetSource, /\.reviewCard3 \.reviewAttribution > span\s*\{[^}]*opacity:\s*1/s);
+});
+
+test('reserves product imagery and keeps controls touch-safe', () => {
+  assert.match(stylesheetSource, /\.productImage\s*\{[^}]*aspect-ratio:/s);
+  assert.match(stylesheetSource, /\.productInfo strong\s*\{[^}]*font-variant-numeric:\s*tabular-nums/s);
+  assert.match(stylesheetSource, /\.menuFilters button\s*\{[^}]*min-height:\s*(?:4[4-9]|[5-9]\d)px/s);
+  assert.match(stylesheetSource, /\.favoriteButton\s*\{[^}]*width:\s*(?:4[4-9]|[5-9]\d)px[^}]*height:\s*(?:4[4-9]|[5-9]\d)px/s);
+});
+
+test('allows image-led sections to shrink at 320px', () => {
+  const mobileRules = stylesheetSource.match(/@media \(max-width: 700px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
+
+  assert.match(mobileRules, /\.heroVisual\s*\{[^}]*min-width:\s*0[^}]*min-height:\s*0/s);
+  assert.match(mobileRules, /\.smashImage, \.smashCopy\s*\{[^}]*min-width:\s*0/s);
+});
+
+test('collapses the hero before its image can overflow tablet columns', () => {
+  const tabletRules = stylesheetSource.match(/@media \(max-width: 900px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
+
+  assert.match(tabletRules, /\.heroPoster\s*\{[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(tabletRules, /\.heroVisual\s*\{[^}]*min-width:\s*0[^}]*min-height:\s*0/s);
+  assert.match(tabletRules, /\.streetTicker\s*\{[^}]*min-width:\s*0[^}]*grid-template-columns:\s*1fr/s);
+});
+
+test('reserves enough mobile page space for the fixed order bar', () => {
+  const mobileRules = stylesheetSource.match(/@media \(max-width: 700px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
+
+  assert.match(mobileRules, /body\s*\{[^}]*padding-bottom:\s*calc\(72px\s*\+/s);
+});
+
+test('keeps brand and visit links touch-safe', () => {
+  assert.match(stylesheetSource, /\.brand\s*\{[^}]*min-height:\s*44px/s);
+  assert.match(stylesheetSource, /\.visitDetails a\s*\{[^}]*min-height:\s*44px[^}]*display:\s*inline-flex/s);
+});
+
+test('keeps ordering actions and small labels legible', () => {
+  assert.match(stylesheetSource, /--deep-red:\s*#8c1f12/i);
+  assert.match(stylesheetSource, /\.buttonLight\s*\{[^}]*color:\s*var\(--ink\)/s);
+  assert.match(stylesheetSource, /\.memoryLabel\s*\{[^}]*color:\s*var\(--deep-red\)/s);
+  assert.match(stylesheetSource, /\.productInfo > p\s*\{[^}]*color:\s*var\(--deep-red\)/s);
+  assert.match(stylesheetSource, /\.comboBanner > div > p\s*\{[^}]*color:\s*var\(--cream\)/s);
+  assert.match(stylesheetSource, /\.comboPrice\s*\{[^}]*color:\s*var\(--cream\)/s);
+  assert.match(stylesheetSource, /\.comboBanner > div > span\s*\{[^}]*color:\s*var\(--cream\)[^}]*opacity:\s*1/s);
+});

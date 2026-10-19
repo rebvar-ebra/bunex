@@ -10,5 +10,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Repository workflow
 
-- Make every change on a separate branch, verify it, and merge it into `main`.
+- Make every change on a separate branch and verify it. After successful verification, merge it into `main` and push without asking for another confirmation.
 - Keep `README.md` current whenever a change affects features, setup, commands, architecture, content-maintenance instructions, or the contribution workflow.

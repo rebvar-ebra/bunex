@@ -1,10 +1,11 @@
 # BUNEX Smashburger
 
-The official website for BUNEX Smashburger in Teltow. It presents the restaurant, photographed menu, opening status, customer reviews, directions, and direct online ordering in a fast, responsive experience.
+The official website for BUNEX Smashburger in Teltow. It presents the restaurant, photographed menu, opening status, customer reviews, directions, and direct online ordering in a fast, responsive Street Press experience.
 
 ## Current features
 
 - Responsive restaurant landing page in German
+- Original Street Press design with full-bleed food photography and poster-inspired composition
 - Real BUNEX menu photography and published prices
 - Beef, chicken, veggie, and side filters
 - Locally remembered menu category and favorite
@@ -13,6 +14,12 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 - Direct links for online ordering, Google Maps, and Instagram
 - Keyboard navigation, semantic landmarks, and mobile ordering bar
 - Static rendering for a lightweight production deployment
+
+## Design direction
+
+The interface uses a deliberately bold BUNEX visual language: warm yellow and cream fields, near-black framing, brick-red accents, oversized Karla headlines, and selective Playfair Display details. Sharp rules, offset cards, and real restaurant photography create a street-food poster feel without copying another restaurant’s layout or identity.
+
+The responsive system collapses asymmetric desktop compositions into readable single-column mobile layouts. It retains visible keyboard focus, 44px minimum controls, reduced-motion support, safe mobile ordering-bar clearance, and protected wrapping for long German words.
 
 ## Technology
 
@@ -73,4 +80,4 @@ Google reviews are intentionally curated without a paid API. When changing them,
 
 ## Contribution workflow
 
-All changes are developed on a separate branch and merged into `main` only after verification. Keep this README current whenever a change affects features, setup, commands, architecture, content-maintenance instructions, or the contribution workflow.
+All changes are developed on a separate branch and merged into `main` only after verification. Once verified, changes are merged and pushed without another confirmation. Keep this README current whenever a change affects features, setup, commands, architecture, content-maintenance instructions, or the contribution workflow.
