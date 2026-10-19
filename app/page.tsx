@@ -36,54 +36,61 @@ export default function Home() {
 
       <main id="main">
         <section className="hero" id="top" aria-labelledby="heroTitle">
-          <div className="heroCopy">
-            <p className="eyebrow">Smashburger · Teltow</p>
-            <h1 id="heroTitle">Smash mit Kante.<br /><em>Saftig</em> bis zum letzten Biss.</h1>
-            <p className="heroIntro">
-              Frisch gepresst, kräftig gebräunt und genau dann gebaut, wenn du bestellst.
-            </p>
-            <div className="heroCta">
-              <a className="button buttonDark" href={orderUrl} target="_blank" rel="noreferrer">
-                Jetzt online bestellen
-              </a>
-              <a className="textLink" href="#karte">Menü entdecken</a>
+          <div className="heroPoster">
+            <div className="heroCopy">
+              <p className="eyebrow">Smashburger · Teltow</p>
+              <h1 id="heroTitle">Smash mit Kante.<br /><em>Saftig</em> bis zum letzten Biss.</h1>
+              <p className="heroIntro">
+                Frisch gepresst, kräftig gebräunt und genau dann gebaut, wenn du bestellst.
+              </p>
+              <div className="heroCta">
+                <a className="button buttonDark" href={orderUrl} target="_blank" rel="noreferrer">
+                  Jetzt online bestellen
+                </a>
+                <a className="textLink" href="#karte">Menü entdecken</a>
+              </div>
+              <div className="heroStatus"><OpeningStatus /></div>
             </div>
-            <div className="heroStatus"><OpeningStatus /></div>
-          </div>
 
-          <div className="heroVisual">
-            <Image
-              src={heroImage}
-              alt="BUNEX Double Smashburger mit knusprigen Pattys, Käse, Gurken und Soße"
-              fill
-              preload
-              sizes="(max-width: 1100px) 100vw, 54vw"
-            />
-            <div className="heroBadge">
-              <span>Made to order</span>
-              <strong>100 % Smash</strong>
+            <div className="heroVisual">
+              <Image
+                src={heroImage}
+                alt="BUNEX Double Smashburger mit knusprigen Pattys, Käse, Gurken und Soße"
+                fill
+                preload
+                sizes="(max-width: 1100px) 100vw, 54vw"
+              />
+              <div className="heroBadge">
+                <span>Made to order</span>
+                <strong>100 % Smash</strong>
+              </div>
+              <p className="heroCaption">Echtes BUNEX Food · Fotografiert in Teltow</p>
             </div>
-            <p className="heroCaption">Echtes BUNEX Food · Fotografiert in Teltow</p>
           </div>
         </section>
 
         <section className="proofStrip" aria-label="BUNEX Versprechen">
-          <p><span>01</span> Frisch gesmasht</p>
-          <p><span>02</span> Auf Bestellung gebaut</p>
-          <p><span>03</span> Mit echten Produktfotos</p>
+          <div className="streetTicker">
+            <p><span>01</span> Frisch gesmasht</p>
+            <p><span>02</span> Auf Bestellung gebaut</p>
+            <p><span>03</span> Mit echten Produktfotos</p>
+          </div>
         </section>
 
         <section className="menuSection" id="karte" aria-labelledby="menuTitle">
-          <div className="sectionIntro menuHeading">
-            <div>
-              <p className="eyebrow">Dein Menü</p>
-              <h2 id="menuTitle">Finde den Smash,<br />der heute <em>passt.</em></h2>
+          <div className="sectionFrame menuFrame">
+            <div className="sectionIntro menuHeading">
+              <span className="sectionIndex" aria-hidden="true">01</span>
+              <div>
+                <p className="eyebrow">Dein Menü</p>
+                <h2 id="menuTitle">Finde den Smash,<br />der heute <em>passt.</em></h2>
+              </div>
+              <p>
+                Beef, Chicken oder Veggie: Filtere die Auswahl, merke dir deinen Favoriten und steige beim nächsten Besuch dort wieder ein.
+              </p>
             </div>
-            <p>
-              Beef, Chicken oder Veggie: Filtere die Auswahl, merke dir deinen Favoriten und steige beim nächsten Besuch dort wieder ein.
-            </p>
+            <MenuShowcase />
           </div>
-          <MenuShowcase />
         </section>
 
         <section className="smashSection" id="smash" aria-labelledby="smashTitle">
@@ -97,6 +104,7 @@ export default function Home() {
             <p>Die Kante macht den Smash.</p>
           </div>
           <div className="smashCopy">
+            <span className="sectionIndex" aria-hidden="true">02</span>
             <p className="eyebrow eyebrowLight">Warum Smash?</p>
             <h2 id="smashTitle">Drei Schritte.<br />Ein klarer Unterschied.</h2>
             <ol className="smashSteps">
@@ -111,6 +119,7 @@ export default function Home() {
 
         <section className="visitSection" id="besuch" aria-labelledby="visitTitle">
           <div className="visitCopy">
+            <span className="sectionIndex" aria-hidden="true">04</span>
             <p className="eyebrow">Komm vorbei</p>
             <h2 id="visitTitle">Dein Tisch ist nah.<br /><em>Teltow</em> auch.</h2>
             <p className="visitLead">Potsdamer Straße 61. Frisch von der Platte, sieben Tage die Woche.</p>
