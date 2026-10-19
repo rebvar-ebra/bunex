@@ -82,3 +82,12 @@ test('keeps quotations separate from their Google Maps links', async () => {
     /<a[\s\S]+className="reviewSourceLink"[\s\S]+<\/a>\s*<blockquote>/,
   );
 });
+
+test('keeps the red card attribution at full contrast', async () => {
+  const stylesheet = await readFile(new URL('../app/globals.css', import.meta.url), 'utf8');
+  const redAttributionRule = stylesheet.match(
+    /\.reviewCard3 \.reviewAttribution > span\s*\{[^}]+\}/s,
+  )?.[0] ?? '';
+
+  assert.match(redAttributionRule, /opacity:\s*1/);
+});

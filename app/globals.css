@@ -647,6 +647,7 @@ h1 em, h2 em { font-weight: 400; }
 .reviewAttribution { display: flex; flex-direction: column; gap: 0.35rem; }
 .reviewAttribution cite { font-family: var(--display); font-size: 1.15rem; font-style: normal; font-weight: 700; }
 .reviewAttribution > span { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.08em; opacity: 0.68; text-transform: uppercase; }
+.reviewCard3 .reviewAttribution > span { opacity: 1; }
 
 .reviewDisclosure {
   max-width: 62rem;
