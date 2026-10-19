@@ -341,6 +341,7 @@ h1 em, h2 em { font-weight: 400; }
   --cream: #fff8e9;
   --green: #28543a;
   --signal-red: #c83d24;
+  --deep-red: #8c1f12;
   --border: rgba(21, 21, 16, 0.24);
   --shadow: 10px 10px 0 rgba(21, 21, 16, 0.16);
   --poster-edge: 0px;
@@ -377,6 +378,8 @@ h1, h2, h3 { overflow-wrap: break-word; }
 }
 
 .button:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+.buttonLight { color: var(--ink); }
+.buttonLight:hover { color: var(--cream); background: var(--ink); }
 .buttonSmall { min-height: 44px; padding: 0.65rem 1rem; font-size: 0.65rem; }
 
 .hero {
@@ -865,7 +868,7 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
   box-shadow: 8px 8px 0 var(--ink);
 }
 
-.memoryLabel { color: var(--signal-red); }
+.memoryLabel { color: var(--deep-red); }
 .memoryPanel h3 { max-width: 19ch; font-family: var(--body); font-size: clamp(2rem, 3.2vw, 3.6rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.05em; }
 .memoryPanel > div > p:last-child, .memoryActions details p { color: rgba(21, 21, 16, 0.76); }
 .memoryActions .button { color: var(--cream); background: var(--ink); }
@@ -903,7 +906,7 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
 .favoriteButton { top: 0.75rem; right: 0.75rem; width: 48px; height: 48px; border: 2px solid var(--ink); border-radius: 0; }
 .favoriteButton[aria-pressed="true"] { color: var(--ink); background: var(--yellow); }
 .productInfo { min-height: 142px; padding: 1.15rem; }
-.productInfo > p { color: var(--signal-red); opacity: 1; }
+.productInfo > p { color: var(--deep-red); opacity: 1; }
 .productInfo h3 { font-family: var(--body); font-size: clamp(1.35rem, 1.8vw, 1.9rem); font-weight: 800; line-height: 0.98; letter-spacing: -0.045em; }
 .productInfo strong { font-size: 0.88rem; font-variant-numeric: tabular-nums lining-nums; }
 .priceStamp { padding: 0.35rem 0.45rem; color: var(--cream); background: var(--signal-red); transform: rotate(-2deg); }
@@ -916,7 +919,8 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
   border-radius: var(--poster-edge);
   box-shadow: 8px 8px 0 var(--ink);
 }
-.comboPrice, .comboBanner > div > p { color: var(--yellow); }
+.comboPrice { color: var(--yellow); }
+.comboBanner > div > p { color: var(--cream); }
 .comboBanner h3 { font-family: var(--body); font-weight: 800; letter-spacing: -0.05em; text-transform: uppercase; }
 .comboBanner > div > span { color: var(--cream); opacity: 0.82; }
 .allergenNote { margin-top: 1.5rem; max-width: 80ch; }
@@ -985,6 +989,9 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
   .heroPoster { min-height: 0; grid-template-columns: 1fr; }
   .heroCopy { min-height: 670px; border-right: 0; border-bottom: 2px solid var(--ink); }
   .heroVisual { min-width: 0; min-height: 0; aspect-ratio: 16 / 10; }
+  .streetTicker { min-width: 0; grid-template-columns: 1fr; }
+  .proofStrip p { border-right: 0; border-bottom: 2px solid var(--ink); }
+  .proofStrip p:last-child { border-bottom: 0; }
   .sectionIntro, .memoryPanel, .smashSection, .visitSection { grid-template-columns: 1fr; }
   .sectionIntro { align-items: start; gap: 2rem; }
   .memoryActions { width: 100%; }

@@ -101,6 +101,7 @@ test('collapses the hero before its image can overflow tablet columns', () => {
 
   assert.match(tabletRules, /\.heroPoster\s*\{[^}]*grid-template-columns:\s*1fr/s);
   assert.match(tabletRules, /\.heroVisual\s*\{[^}]*min-width:\s*0[^}]*min-height:\s*0/s);
+  assert.match(tabletRules, /\.streetTicker\s*\{[^}]*min-width:\s*0[^}]*grid-template-columns:\s*1fr/s);
 });
 
 test('reserves enough mobile page space for the fixed order bar', () => {
@@ -112,4 +113,12 @@ test('reserves enough mobile page space for the fixed order bar', () => {
 test('keeps brand and visit links touch-safe', () => {
   assert.match(stylesheetSource, /\.brand\s*\{[^}]*min-height:\s*44px/s);
   assert.match(stylesheetSource, /\.visitDetails a\s*\{[^}]*min-height:\s*44px[^}]*display:\s*inline-flex/s);
+});
+
+test('keeps ordering actions and small labels legible', () => {
+  assert.match(stylesheetSource, /--deep-red:\s*#8c1f12/i);
+  assert.match(stylesheetSource, /\.buttonLight\s*\{[^}]*color:\s*var\(--ink\)/s);
+  assert.match(stylesheetSource, /\.memoryLabel\s*\{[^}]*color:\s*var\(--deep-red\)/s);
+  assert.match(stylesheetSource, /\.productInfo > p\s*\{[^}]*color:\s*var\(--deep-red\)/s);
+  assert.match(stylesheetSource, /\.comboBanner > div > p\s*\{[^}]*color:\s*var\(--cream\)/s);
 });
