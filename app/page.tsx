@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MenuShowcase } from "@/components/menu-showcase";
 import { OpeningStatus } from "@/components/opening-status";
+import { ReviewWall } from "@/components/review-wall";
 import heroImage from "@/assets/bunex-smashburger-hero.webp";
 
 const orderUrl = "https://bunexsmashburger.online-karte.com/bunexsmashburger";
@@ -105,6 +106,8 @@ export default function Home() {
             </ol>
           </div>
         </section>
+
+        <ReviewWall />
 
         <section className="visitSection" id="besuch" aria-labelledby="visitTitle">
           <div className="visitCopy">

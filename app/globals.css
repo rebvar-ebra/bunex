@@ -531,6 +531,132 @@ h1 em, h2 em { font-weight: 400; }
 .smashSteps h3 { font-family: var(--display); font-size: 1.45rem; }
 .smashSteps p { max-width: 38rem; margin-top: 0.35rem; color: rgba(255, 250, 240, 0.68); }
 
+.reviewSection {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5.5rem, 9vw, 10rem) 4vw;
+  color: var(--cream);
+  background: var(--ink);
+  border-top: 1px solid rgba(255, 250, 240, 0.16);
+}
+
+.reviewSection::before {
+  position: absolute;
+  top: -8rem;
+  right: -6rem;
+  width: clamp(15rem, 28vw, 30rem);
+  aspect-ratio: 1;
+  background: var(--red);
+  border-radius: 50%;
+  content: "";
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.reviewInner { position: relative; z-index: 1; width: min(1460px, 100%); margin: 0 auto; }
+
+.reviewHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.62fr);
+  align-items: end;
+  gap: clamp(3rem, 8vw, 9rem);
+}
+
+.reviewHeader h2 {
+  max-width: 11ch;
+  font-family: var(--display);
+  font-size: clamp(3.3rem, 6vw, 7rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+
+.reviewHeader h2 em { color: var(--yellow); font-weight: 400; }
+.reviewHeaderCopy > p { max-width: 34rem; color: rgba(255, 250, 240, 0.72); line-height: 1.6; }
+.reviewCta { margin-top: 1.7rem; color: var(--ink); }
+
+.reviewGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(0.9rem, 1.6vw, 1.5rem);
+  margin: clamp(3.5rem, 6vw, 6rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reviewCard { min-width: 0; }
+.reviewCard2 { margin-top: clamp(1.5rem, 3vw, 3.5rem); }
+
+.reviewCardInner {
+  min-height: clamp(330px, 30vw, 430px);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.4rem, 2.6vw, 2.5rem);
+  color: var(--ink);
+  background: var(--cream);
+  border: 1px solid rgba(255, 250, 240, 0.3);
+  border-radius: var(--radius-md);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.reviewCard2 .reviewCardInner { background: var(--yellow); }
+.reviewCard3 .reviewCardInner { color: var(--cream); background: var(--red); }
+.reviewCard:hover .reviewCardInner { transform: translateY(-6px) rotate(-0.35deg); box-shadow: 0 20px 0 rgba(244, 189, 24, 0.15); }
+.reviewCard2:hover .reviewCardInner { transform: translateY(-6px) rotate(0.35deg); }
+
+.reviewSourceLink {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.reviewSourceMark {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: var(--cream);
+  background: var(--ink);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  letter-spacing: 0;
+}
+
+.reviewCard3 .reviewSourceMark { color: var(--red); background: var(--cream); }
+.reviewArrow { margin-left: auto; font-size: 1.2rem; }
+
+.reviewCard blockquote {
+  margin: auto 0;
+  padding: 2.5rem 0;
+  font-family: var(--display);
+  font-size: clamp(1.85rem, 2.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+}
+
+.reviewAttribution { display: flex; flex-direction: column; gap: 0.35rem; }
+.reviewAttribution cite { font-family: var(--display); font-size: 1.15rem; font-style: normal; font-weight: 700; }
+.reviewAttribution > span { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.08em; opacity: 0.68; text-transform: uppercase; }
+.reviewCard3 .reviewAttribution > span { opacity: 1; }
+
+.reviewDisclosure {
+  max-width: 62rem;
+  margin-top: 2rem;
+  color: rgba(255, 250, 240, 0.56);
+  font-size: 0.67rem;
+  line-height: 1.55;
+}
+
 .visitSection { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 0.65fr); background: var(--yellow); }
 .visitCopy { padding: clamp(5rem, 9vw, 10rem) clamp(1.5rem, 7vw, 8rem); }
 .visitCopy h2 { max-width: 12ch; font-size: clamp(3.5rem, 6vw, 7rem); line-height: 0.95; }
@@ -572,6 +698,10 @@ h1 em, h2 em { font-weight: 400; }
   .sectionIntro { align-items: start; gap: 2rem; }
   .memoryActions { width: 100%; }
   .smashImage { min-height: 580px; }
+  .reviewHeader { grid-template-columns: 1fr; align-items: start; gap: 2rem; }
+  .reviewGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reviewCard3 { grid-column: 1 / -1; }
+  .reviewCard3 .reviewCardInner { min-height: 300px; }
   .visitDetails { padding-top: 1rem; padding-bottom: 4rem; }
 }
 
@@ -607,6 +737,14 @@ h1 em, h2 em { font-weight: 400; }
   .comboBanner { grid-template-columns: 1fr; gap: 1rem; }
   .comboBanner .button { width: 100%; }
   .smashImage { min-height: 480px; }
+  .reviewSection { padding: 5rem 1.25rem; }
+  .reviewHeader h2 { font-size: clamp(3rem, 14.5vw, 5rem); }
+  .reviewCta { width: 100%; }
+  .reviewGrid { grid-template-columns: 1fr; gap: 0.85rem; }
+  .reviewCard2 { margin-top: 0; }
+  .reviewCard3 { grid-column: auto; }
+  .reviewCardInner, .reviewCard3 .reviewCardInner { min-height: 300px; border-radius: var(--radius-sm); }
+  .reviewCard blockquote { font-size: clamp(2rem, 9vw, 2.7rem); }
   .smashCopy, .visitCopy, .visitDetails { padding-right: 1.25rem; padding-left: 1.25rem; }
   .siteFooter { grid-template-columns: 1fr; gap: 1.25rem; text-align: center; }
   .siteFooter > div { justify-content: center; }
