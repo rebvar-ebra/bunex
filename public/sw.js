@@ -1,9 +1,8 @@
-const CACHE_VERSION = "bunex-pwa-v1";
+const CACHE_VERSION = "bunex-pwa-v2";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const ACTIVE_CACHES = new Set([STATIC_CACHE, RUNTIME_CACHE]);
 const PRECACHE_URLS = [
-  "/",
   "/offline.html",
   "/favicon.svg",
   "/icons/icon-192.png",
@@ -52,9 +51,14 @@ async function handleNavigation(request) {
     await rememberResponse(RUNTIME_CACHE, request, response);
     return response;
   } catch {
+    const runtimeCache = await caches.open(RUNTIME_CACHE);
+    const runtimeResponse = await runtimeCache.match(request);
+    if (runtimeResponse) return runtimeResponse;
+
+    const staticCache = await caches.open(STATIC_CACHE);
     return (
-      (await caches.match(request)) ||
-      (await caches.match("/offline.html"))
+      (await staticCache.match(request)) ||
+      (await staticCache.match("/offline.html"))
     );
   }
 }

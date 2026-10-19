@@ -214,11 +214,10 @@ test('precaches the complete offline shell during service-worker installation', 
 
   await harness.dispatch('install');
 
-  const staticCache = harness.stores.get('bunex-pwa-v1-static');
+  const staticCache = harness.stores.get('bunex-pwa-v2-static');
   assert.deepEqual(
     [...staticCache.keys()].sort(),
     [
-      '/',
       '/favicon.svg',
       '/icons/icon-192.png',
       '/icons/icon-512.png',
@@ -229,19 +228,29 @@ test('precaches the complete offline shell during service-worker installation', 
   assert.equal(harness.state().skippedWaiting, true);
 });
 
+test('uses the self-contained fallback when the first offline request is home', async () => {
+  const harness = await createWorkerHarness();
+  await harness.dispatch('install');
+  const request = { method: 'GET', mode: 'navigate', destination: 'document', url: 'https://bunex.test/' };
+
+  const result = await harness.dispatch('fetch', { request });
+
+  assert.equal(result.response.body, 'precache:/offline.html');
+});
+
 test('activation removes only obsolete BUNEX caches', async () => {
   const harness = await createWorkerHarness();
-  await harness.cacheStorage.open('bunex-pwa-v0-static');
   await harness.cacheStorage.open('bunex-pwa-v1-static');
-  await harness.cacheStorage.open('bunex-pwa-v1-runtime');
+  await harness.cacheStorage.open('bunex-pwa-v2-static');
+  await harness.cacheStorage.open('bunex-pwa-v2-runtime');
   await harness.cacheStorage.open('another-app-cache');
 
   await harness.dispatch('activate');
 
   assert.deepEqual((await harness.cacheStorage.keys()).sort(), [
     'another-app-cache',
-    'bunex-pwa-v1-runtime',
-    'bunex-pwa-v1-static',
+    'bunex-pwa-v2-runtime',
+    'bunex-pwa-v2-static',
   ]);
   assert.equal(harness.state().claimedClients, true);
 });
@@ -269,6 +278,20 @@ test('uses the network for navigations and stores successful pages for later', a
 
   assert.equal(result.response, online);
   assert.equal((await harness.cacheStorage.match(request)).body, 'fresh page');
+});
+
+test('prefers a refreshed runtime homepage over installation-era HTML when offline', async () => {
+  const fresh = response('fresh homepage');
+  const harness = await createWorkerHarness(async () => fresh);
+  const request = { method: 'GET', mode: 'navigate', destination: 'document', url: 'https://bunex.test/' };
+  const staticCache = await harness.cacheStorage.open('bunex-pwa-v2-static');
+  await staticCache.put(request, response('installation homepage'));
+
+  assert.equal((await harness.dispatch('fetch', { request })).response.body, 'fresh homepage');
+  harness.setFetch(async () => {
+    throw new Error('offline');
+  });
+  assert.equal((await harness.dispatch('fetch', { request })).response.body, 'fresh homepage');
 });
 
 test('falls back to the self-contained offline page when navigation fails', async () => {

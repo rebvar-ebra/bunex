@@ -87,7 +87,7 @@ Google reviews are intentionally curated without a paid API. When changing them,
 
 ## Progressive Web App maintenance
 
-The production site registers `public/sw.js`; development mode deliberately does not. After visiting the production site once, supported browsers can install BUNEX from their browser menu and reopen cached pages without a connection. An unknown uncached route falls back to `public/offline.html`.
+The production site registers `public/sw.js`; development mode deliberately does not. After visiting the production site once, supported browsers can install BUNEX from their browser menu. The self-contained `public/offline.html` fallback is always available after installation; pages are cached only after a service-worker-controlled online visit, so incomplete Next.js HTML is never presented as a working offline page.
 
 When changing the precached shell or caching behavior, increment `CACHE_VERSION` in `public/sw.js`. Keep the icon paths in `app/manifest.ts` and `PRECACHE_URLS` aligned, retain the `/sw.js` security headers in `next.config.ts`, and run both the automated tests and production build. Ordering, Maps, Instagram, Google reviews, and all other cross-origin requests remain network-only by design.
 
