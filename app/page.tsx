@@ -140,7 +140,12 @@ export default function Home() {
       <footer className="siteFooter">
         <a className="brand" href="#top" aria-label="Zurück nach oben">BUN<span>EX</span></a>
         <p>Frisch gesmasht in Teltow.</p>
-        <div><span>Impressum folgt</span><span>Datenschutz folgt</span><span>{"©\u00a02026 BUNEX"}</span></div>
+        <div>
+          <span>Impressum folgt</span>
+          <span>Datenschutz folgt</span>
+          <span>{"©\u00a02026 BUNEX"}</span>
+          <span>Entwickelt von Rebvar Ebrahimi</span>
+        </div>
       </footer>
 
       <div className="mobileOrderBar">

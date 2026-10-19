@@ -31,6 +31,8 @@ test('preserves every homepage section and ordering action', () => {
   assert.match(pageSource, /aria-labelledby="menuTitle"/);
   assert.match(pageSource, /aria-labelledby="smashTitle"/);
   assert.match(pageSource, /aria-labelledby="visitTitle"/);
+  assert.match(pageSource, /©\\u00a02026 BUNEX/);
+  assert.match(pageSource, /Entwickelt von Rebvar Ebrahimi/);
 });
 
 test('uses a distinct process photo outside the menu card set', () => {
