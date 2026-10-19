@@ -22,7 +22,7 @@ The service worker uses two versioned caches:
 - A static cache for the home page, self-contained offline page, favicon, and install icons.
 - A runtime cache for successful same-origin navigations and static image, font, script, and stylesheet requests.
 
-Navigations use network-first behavior so restaurant content stays current. When the network fails, the worker returns the exact cached navigation when available, then the cached home page, and finally the offline page. Static assets use cache-first behavior after their first successful load. Only `GET` requests on the BUNEX origin are intercepted.
+Navigations use network-first behavior so restaurant content stays current. When the network fails, the worker returns the exact cached navigation when available and otherwise returns the offline page. Static assets use cache-first behavior after their first successful load. Only `GET` requests on the BUNEX origin are intercepted.
 
 Activation deletes only obsolete cache entries with the BUNEX PWA prefix, so unrelated browser cache data is never touched. The registration asks the browser not to cache the service-worker script, and the server gives `/sw.js` the official Next.js guide's JavaScript content type, no-cache policy, and same-origin content security policy.
 

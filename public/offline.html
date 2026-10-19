@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffec00" />
+    <title>Offline — BUNEX Smashburger</title>
+    <style>
+      :root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; }
+      * { box-sizing: border-box; }
+      body {
+        min-height: 100vh;
+        min-height: 100svh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: #0a0a08;
+        color: #f7f4ec;
+      }
+      main { width: min(100%, 620px); text-align: center; }
+      .mark {
+        width: 112px;
+        height: 112px;
+        margin: 0 auto 32px;
+        display: grid;
+        place-items: center;
+        border-radius: 28px;
+        background: #ffec00;
+        color: #0a0a08;
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 1;
+      }
+      p:first-of-type {
+        margin: 0 0 12px;
+        color: #ffec00;
+        font-size: clamp(3rem, 12vw, 6rem);
+        font-weight: 900;
+        line-height: .86;
+        letter-spacing: -.05em;
+        text-transform: uppercase;
+      }
+      p:last-of-type { max-width: 42ch; margin: 0 auto 28px; font-size: 1.1rem; line-height: 1.55; }
+      a {
+        min-height: 52px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 28px;
+        border-radius: 999px;
+        background: #ffec00;
+        color: #0a0a08;
+        font-weight: 800;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      a:focus-visible { outline: 3px solid #f7f4ec; outline-offset: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="mark" aria-hidden="true">B</div>
+      <p>Du bist gerade offline.</p>
+      <p>Kein Netz, kein Stress. Sobald deine Verbindung zurück ist, laden wir dir den nächsten Smash.</p>
+      <a href="/">Erneut versuchen</a>
+    </main>
+  </body>
+</html>

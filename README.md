@@ -13,6 +13,8 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 - Curated Google review wall with transparent manual-update date
 - Direct links for online ordering, Google Maps, and Instagram
 - Footer ownership and developer attribution
+- Installable Progressive Web App for phones and desktops
+- Versioned offline support with a branded, self-contained fallback page
 - Keyboard navigation, semantic landmarks, and mobile ordering bar
 - Static rendering for a lightweight production deployment
 
@@ -27,6 +29,7 @@ The responsive system scales from a four-column desktop menu to two columns on t
 - Next.js 16 App Router
 - React 19
 - TypeScript
+- Native Web App Manifest, Service Worker, and Cache Storage APIs
 - CSS without a component-library dependency
 - Node.js built-in test runner
 
@@ -64,9 +67,9 @@ The responsive release checklist covers 320, 375, 768, 1024, 1280, and 1440px vi
 ```text
 app/          Page composition, metadata, and global styles
 assets/       Imported source imagery
-components/   Interactive and presentational page sections
-lib/          Menu, opening-hours, preferences, and review data
-public/       Public menu photography and favicon
+components/   Interactive and presentational page sections, including PWA registration
+lib/          Menu, opening-hours, preferences, reviews, and PWA configuration
+public/       Public photography, icons, offline page, and service worker
 tests/        Node-based behavior and integration tests
 docs/         Design specifications and implementation plans
 ```
@@ -81,6 +84,12 @@ docs/         Design specifications and implementation plans
 - Editorial photo for the “Warum Smash?” section: `public/bunex-smash-process.jpg`
 
 Google reviews are intentionally curated without a paid API. When changing them, verify the wording against the public source, keep the source link intact, update `reviewUpdateLabel`, and run the tests.
+
+## Progressive Web App maintenance
+
+The production site registers `public/sw.js`; development mode deliberately does not. After visiting the production site once, supported browsers can install BUNEX from their browser menu and reopen cached pages without a connection. An unknown uncached route falls back to `public/offline.html`.
+
+When changing the precached shell or caching behavior, increment `CACHE_VERSION` in `public/sw.js`. Keep the icon paths in `app/manifest.ts` and `PRECACHE_URLS` aligned, retain the `/sw.js` security headers in `next.config.ts`, and run both the automated tests and production build. Ordering, Maps, Instagram, Google reviews, and all other cross-origin requests remain network-only by design.
 
 ## Contribution workflow
 
