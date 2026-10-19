@@ -919,10 +919,10 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
   border-radius: var(--poster-edge);
   box-shadow: 8px 8px 0 var(--ink);
 }
-.comboPrice { color: var(--yellow); }
+.comboPrice { color: var(--cream); }
 .comboBanner > div > p { color: var(--cream); }
 .comboBanner h3 { font-family: var(--body); font-weight: 800; letter-spacing: -0.05em; text-transform: uppercase; }
-.comboBanner > div > span { color: var(--cream); opacity: 0.82; }
+.comboBanner > div > span { color: var(--cream); opacity: 1; }
 .allergenNote { margin-top: 1.5rem; max-width: 80ch; }
 
 .smashSection { border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); }

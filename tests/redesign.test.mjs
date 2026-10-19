@@ -121,4 +121,6 @@ test('keeps ordering actions and small labels legible', () => {
   assert.match(stylesheetSource, /\.memoryLabel\s*\{[^}]*color:\s*var\(--deep-red\)/s);
   assert.match(stylesheetSource, /\.productInfo > p\s*\{[^}]*color:\s*var\(--deep-red\)/s);
   assert.match(stylesheetSource, /\.comboBanner > div > p\s*\{[^}]*color:\s*var\(--cream\)/s);
+  assert.match(stylesheetSource, /\.comboPrice\s*\{[^}]*color:\s*var\(--cream\)/s);
+  assert.match(stylesheetSource, /\.comboBanner > div > span\s*\{[^}]*color:\s*var\(--cream\)[^}]*opacity:\s*1/s);
 });
