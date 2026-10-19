@@ -88,6 +88,7 @@ h1, h2, h3 { margin: 0; hyphens: none; page-break-after: avoid; }
 }
 
 .brand {
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   color: var(--ink);
@@ -966,6 +967,7 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
 .visitDetails > div { border-bottom: 2px solid var(--ink); }
 .visitDetails > div:first-child { border-top: 2px solid var(--ink); }
 .visitDetails strong, .visitDetails a { font-family: var(--body); font-weight: 800; }
+.visitDetails a { min-height: 44px; display: inline-flex; align-items: center; }
 
 .siteFooter { min-height: 128px; color: var(--cream); background: var(--ink); border-top: 0; }
 .siteFooter .brand span { color: var(--ink); background: var(--yellow); }
@@ -980,8 +982,9 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
 
 @media (max-width: 900px) {
   .hero { min-height: auto; grid-template-columns: 1fr; }
-  .heroCopy { min-height: 670px; }
-  .heroVisual { min-height: 70vw; }
+  .heroPoster { min-height: 0; grid-template-columns: 1fr; }
+  .heroCopy { min-height: 670px; border-right: 0; border-bottom: 2px solid var(--ink); }
+  .heroVisual { min-width: 0; min-height: 0; aspect-ratio: 16 / 10; }
   .sectionIntro, .memoryPanel, .smashSection, .visitSection { grid-template-columns: 1fr; }
   .sectionIntro { align-items: start; gap: 2rem; }
   .memoryActions { width: 100%; }
@@ -995,7 +998,7 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
 }
 
 @media (max-width: 700px) {
-  body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
   .siteHeader { padding: 0 1rem; }
   .headerInner { min-height: 64px; }
   .headerActions { display: none; }
@@ -1010,7 +1013,7 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
   .heroCta .button { width: 100%; }
   .textLink { align-self: flex-start; }
   .heroStatus { margin-top: 2rem; }
-  .heroVisual { min-height: 420px; aspect-ratio: 1 / 1.18; }
+  .heroVisual { min-width: 0; min-height: 0; aspect-ratio: 1 / 1.18; }
   .heroVisual > img { object-position: 64% center; }
   .heroBadge { width: 108px; }
   .heroCaption { right: 1rem; bottom: 1rem; left: 1rem; text-align: center; }
@@ -1030,6 +1033,7 @@ h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: no
   .productImage { aspect-ratio: 1.15 / 1; }
   .comboBanner { grid-template-columns: 1fr; gap: 1rem; }
   .comboBanner .button { width: 100%; }
+  .smashImage, .smashCopy { min-width: 0; }
   .smashImage { min-height: 480px; }
   .reviewSection { padding: 5rem 1.25rem; }
   .reviewHeader h2 { font-size: clamp(3rem, 14.5vw, 5rem); }

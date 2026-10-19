@@ -88,3 +88,28 @@ test('reserves product imagery and keeps controls touch-safe', () => {
   assert.match(stylesheetSource, /\.menuFilters button\s*\{[^}]*min-height:\s*(?:4[4-9]|[5-9]\d)px/s);
   assert.match(stylesheetSource, /\.favoriteButton\s*\{[^}]*width:\s*(?:4[4-9]|[5-9]\d)px[^}]*height:\s*(?:4[4-9]|[5-9]\d)px/s);
 });
+
+test('allows image-led sections to shrink at 320px', () => {
+  const mobileRules = stylesheetSource.match(/@media \(max-width: 700px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
+
+  assert.match(mobileRules, /\.heroVisual\s*\{[^}]*min-width:\s*0[^}]*min-height:\s*0/s);
+  assert.match(mobileRules, /\.smashImage, \.smashCopy\s*\{[^}]*min-width:\s*0/s);
+});
+
+test('collapses the hero before its image can overflow tablet columns', () => {
+  const tabletRules = stylesheetSource.match(/@media \(max-width: 900px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
+
+  assert.match(tabletRules, /\.heroPoster\s*\{[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(tabletRules, /\.heroVisual\s*\{[^}]*min-width:\s*0[^}]*min-height:\s*0/s);
+});
+
+test('reserves enough mobile page space for the fixed order bar', () => {
+  const mobileRules = stylesheetSource.match(/@media \(max-width: 700px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
+
+  assert.match(mobileRules, /body\s*\{[^}]*padding-bottom:\s*calc\(72px\s*\+/s);
+});
+
+test('keeps brand and visit links touch-safe', () => {
+  assert.match(stylesheetSource, /\.brand\s*\{[^}]*min-height:\s*44px/s);
+  assert.match(stylesheetSource, /\.visitDetails a\s*\{[^}]*min-height:\s*44px[^}]*display:\s*inline-flex/s);
+});
