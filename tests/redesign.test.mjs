@@ -36,6 +36,7 @@ test('preserves every homepage section and ordering action', () => {
 test('adds the photo-first composition hooks', () => {
   assert.match(pageSource, /className="announcementBar"/);
   assert.match(pageSource, /className="heroPoster heroOverlay"/);
+  assert.match(pageSource, /sizes="100vw"/);
   assert.match(pageSource, /className="sectionFrame menuFrame menuDeck"/);
   assert.match(pageSource, /className="streetTicker"/);
   assert.match(pageSource, /className="sectionIndex"/);
@@ -69,6 +70,7 @@ test('defines the accessible photo-first visual foundation', () => {
   assert.match(stylesheetSource, /\.heroOverlay\s*\{[^}]*min-height:\s*calc\(100svh\s*-\s*36px\)/s);
   assert.match(stylesheetSource, /\.heroVisual\s*\{[^}]*position:\s*absolute[^}]*inset:\s*0/s);
   assert.match(stylesheetSource, /\.heroVisual img\s*\{[^}]*object-fit:\s*cover/s);
+  assert.match(stylesheetSource, /\.headerActions \.openingStatus\s*\{[^}]*background:\s*rgba\(0,0,0,\.72\)/s);
   assert.match(stylesheetSource, /\.button\s*\{[^}]*border-radius:\s*var\(--pill-radius\)[^}]*min-height:\s*48px/s);
   assert.match(stylesheetSource, /\.buttonSmall\s*\{[^}]*min-height:\s*44px/s);
   assert.match(stylesheetSource, /:focus-visible/);
@@ -81,6 +83,7 @@ test('keeps the photo hero and menu fluid without mobile overflow', () => {
   assert.match(mobileRules, /\.siteHeader nav,\s*\.headerActions\s*\{[^}]*display:\s*none/s);
   assert.match(mobileRules, /\.heroOverlay\s*\{[^}]*min-height:\s*720px/s);
   assert.match(mobileRules, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(/s);
+  assert.match(mobileRules, /\.heroBadge\s*\{[^}]*display:\s*none/s);
   assert.match(mobileRules, /\.productGrid\s*\{[^}]*grid-template-columns:\s*1fr/s);
 });
 

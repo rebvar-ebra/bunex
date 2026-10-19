@@ -62,7 +62,7 @@ export default function Home() {
                 alt="BUNEX Double Smashburger mit knusprigen Pattys, Käse, Gurken und Soße"
                 fill
                 preload
-                sizes="(max-width: 1100px) 100vw, 54vw"
+                sizes="100vw"
               />
               <div className="heroBadge">
                 <span>Made to order</span>
