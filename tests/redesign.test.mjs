@@ -55,37 +55,46 @@ test('keeps interactive component boundaries unchanged', () => {
   assert.equal((pageSource.match(/<OpeningStatus(?:\s+compact)?\s*\/>/g) ?? []).length, 3);
 });
 
-test('defines the accessible street press visual foundation', () => {
-  assert.match(stylesheetSource, /--signal-red:\s*#c83d24/i);
-  assert.match(stylesheetSource, /--poster-edge:\s*0px/);
+test('defines the accessible photo-first visual foundation', () => {
+  assert.match(stylesheetSource, /--yellow:\s*#ffec00/i);
+  assert.match(stylesheetSource, /--ink:\s*#0a0a08/i);
+  assert.match(stylesheetSource, /--cream:\s*#f7f4ec/i);
+  assert.match(stylesheetSource, /--card-radius:\s*22px/);
+  assert.match(stylesheetSource, /--pill-radius:\s*999px/);
   assert.match(stylesheetSource, /body\s*\{[^}]*font-size:\s*clamp\(/s);
   assert.match(stylesheetSource, /body\s*\{[^}]*font-feature-settings:[^}]*"kern"\s+1/s);
   assert.match(stylesheetSource, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(/s);
-  assert.match(stylesheetSource, /\.heroPoster\s*\{[^}]*grid-template-columns:/s);
-  assert.match(stylesheetSource, /\.heroVisual\s*\{[^}]*aspect-ratio:/s);
+  assert.match(stylesheetSource, /\.announcementBar\s*\{[^}]*background:\s*var\(--yellow\)[^}]*color:\s*var\(--ink\)/s);
+  assert.match(stylesheetSource, /\.siteHeader\s*\{[^}]*position:\s*absolute[^}]*background:\s*transparent/s);
+  assert.match(stylesheetSource, /\.heroOverlay\s*\{[^}]*min-height:\s*calc\(100svh\s*-\s*36px\)/s);
+  assert.match(stylesheetSource, /\.heroVisual\s*\{[^}]*position:\s*absolute[^}]*inset:\s*0/s);
+  assert.match(stylesheetSource, /\.heroVisual img\s*\{[^}]*object-fit:\s*cover/s);
+  assert.match(stylesheetSource, /\.button\s*\{[^}]*border-radius:\s*var\(--pill-radius\)[^}]*min-height:\s*48px/s);
   assert.match(stylesheetSource, /\.buttonSmall\s*\{[^}]*min-height:\s*44px/s);
   assert.match(stylesheetSource, /:focus-visible/);
   assert.match(stylesheetSource, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
 });
 
-test('collapses the street press hero and ticker without mobile overflow', () => {
+test('keeps the photo hero and menu fluid without mobile overflow', () => {
   const mobileRules = stylesheetSource.match(/@media \(max-width: 700px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
 
-  assert.match(mobileRules, /\.heroPoster\s*\{[^}]*grid-template-columns:\s*1fr/s);
-  assert.match(mobileRules, /\.streetTicker\s*\{[^}]*min-width:\s*0[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(mobileRules, /\.siteHeader nav,\s*\.headerActions\s*\{[^}]*display:\s*none/s);
+  assert.match(mobileRules, /\.heroOverlay\s*\{[^}]*min-height:\s*720px/s);
+  assert.match(mobileRules, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(/s);
+  assert.match(mobileRules, /\.productGrid\s*\{[^}]*grid-template-columns:\s*1fr/s);
 });
 
-test('provides poster hooks without changing menu memory behavior', () => {
-  assert.match(menuSource, /className="memoryPanel memoryReceipt"/);
-  assert.match(menuSource, /className="productGrid posterGrid"/);
-  assert.match(menuSource, /className="priceStamp"/);
+test('provides rounded menu deck hooks without changing menu memory behavior', () => {
+  assert.match(menuSource, /className="memoryPanel memoryCard"/);
+  assert.match(menuSource, /className="productGrid menuCardGrid"/);
+  assert.match(menuSource, /className="priceTag"/);
   assert.match(menuSource, /localStorage\.getItem\(memoryKey\)/);
   assert.match(menuSource, /localStorage\.removeItem\(memoryKey\)/);
   assert.match(menuSource, /Nur deine letzte Kategorie und dein Favorit—lokal in diesem Browser, ohne Konto\./);
 });
 
-test('provides an original review collage with preserved attribution', () => {
-  assert.match(reviewSource, /className="reviewGrid reviewCollage"/);
+test('provides a clear review deck with preserved attribution', () => {
+  assert.match(reviewSource, /className="reviewGrid reviewDeck"/);
   assert.match(reviewSource, /className="sectionIndex"/);
   assert.match(reviewSource, /<blockquote>/);
   assert.match(stylesheetSource, /\.reviewCard blockquote\s*\{[^}]*overflow-wrap:\s*anywhere/s);
@@ -106,12 +115,11 @@ test('allows image-led sections to shrink at 320px', () => {
   assert.match(mobileRules, /\.smashImage, \.smashCopy\s*\{[^}]*min-width:\s*0/s);
 });
 
-test('collapses the hero before its image can overflow tablet columns', () => {
+test('uses a two-column menu deck at tablet widths', () => {
   const tabletRules = stylesheetSource.match(/@media \(max-width: 900px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
 
-  assert.match(tabletRules, /\.heroPoster\s*\{[^}]*grid-template-columns:\s*1fr/s);
-  assert.match(tabletRules, /\.heroVisual\s*\{[^}]*min-width:\s*0[^}]*min-height:\s*0/s);
-  assert.match(tabletRules, /\.streetTicker\s*\{[^}]*min-width:\s*0[^}]*grid-template-columns:\s*1fr/s);
+  assert.match(tabletRules, /\.productGrid\s*\{[^}]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
+  assert.match(tabletRules, /\.smashSection\s*\{[^}]*grid-template-columns:\s*1fr/s);
 });
 
 test('reserves enough mobile page space for the fixed order bar', () => {
@@ -126,10 +134,12 @@ test('keeps brand and visit links touch-safe', () => {
 });
 
 test('keeps ordering actions and small labels legible', () => {
-  assert.match(stylesheetSource, /--deep-red:\s*#8c1f12/i);
+  assert.match(stylesheetSource, /\.menuSection\s*\{[^}]*background:\s*var\(--yellow\)/s);
+  assert.match(stylesheetSource, /\.reviewSection\s*\{[^}]*background:\s*var\(--ink\)[^}]*color:\s*var\(--cream\)/s);
+  assert.match(stylesheetSource, /\.productCard\s*\{[^}]*background:\s*var\(--white\)[^}]*border-radius:\s*var\(--card-radius\)/s);
   assert.match(stylesheetSource, /\.buttonLight\s*\{[^}]*color:\s*var\(--ink\)/s);
-  assert.match(stylesheetSource, /\.memoryLabel\s*\{[^}]*color:\s*var\(--deep-red\)/s);
-  assert.match(stylesheetSource, /\.productInfo > p\s*\{[^}]*color:\s*var\(--deep-red\)/s);
+  assert.match(stylesheetSource, /\.memoryLabel\s*\{[^}]*color:\s*var\(--ink\)/s);
+  assert.match(stylesheetSource, /\.productInfo > p\s*\{[^}]*color:\s*var\(--ink\)/s);
   assert.match(stylesheetSource, /\.comboBanner > div > p\s*\{[^}]*color:\s*var\(--cream\)/s);
   assert.match(stylesheetSource, /\.comboPrice\s*\{[^}]*color:\s*var\(--cream\)/s);
   assert.match(stylesheetSource, /\.comboBanner > div > span\s*\{[^}]*color:\s*var\(--cream\)[^}]*opacity:\s*1/s);
