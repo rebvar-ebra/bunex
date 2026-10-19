@@ -100,8 +100,8 @@ export default function Home() {
         <section className="smashSection" id="smash" aria-labelledby="smashTitle">
           <div className="smashImage">
             <Image
-              src="/menu/bbq-burger.webp"
-              alt="BUNEX BBQ Burger mit zwei knusprig gebräunten Smash Pattys"
+              src="/bunex-smash-process.jpg"
+              alt="BUNEX Smashburger mit Pommes und weiteren Gerichten im Hintergrund"
               fill
               sizes="(max-width: 900px) 100vw, 46vw"
             />

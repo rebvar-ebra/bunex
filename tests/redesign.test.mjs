@@ -33,6 +33,11 @@ test('preserves every homepage section and ordering action', () => {
   assert.match(pageSource, /aria-labelledby="visitTitle"/);
 });
 
+test('uses a distinct process photo outside the menu card set', () => {
+  assert.match(pageSource, /src="\/bunex-smash-process\.jpg"/);
+  assert.match(pageSource, /alt="BUNEX Smashburger mit Pommes und weiteren Gerichten im Hintergrund"/);
+});
+
 test('adds the photo-first composition hooks', () => {
   assert.match(pageSource, /className="announcementBar"/);
   assert.match(pageSource, /className="heroPoster heroOverlay"/);
