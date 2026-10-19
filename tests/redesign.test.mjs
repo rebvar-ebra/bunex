@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const pageSource = await readFile(new URL('../app/page.tsx', import.meta.url), 'utf8');
+const layoutSource = await readFile(new URL('../app/layout.tsx', import.meta.url), 'utf8');
 const stylesheetSource = await readFile(new URL('../app/globals.css', import.meta.url), 'utf8');
 const menuSource = await readFile(new URL('../components/menu-showcase.tsx', import.meta.url), 'utf8');
 const reviewSource = await readFile(new URL('../components/review-wall.tsx', import.meta.url), 'utf8');
@@ -32,11 +33,20 @@ test('preserves every homepage section and ordering action', () => {
   assert.match(pageSource, /aria-labelledby="visitTitle"/);
 });
 
-test('adds original street press composition hooks', () => {
-  assert.match(pageSource, /className="heroPoster"/);
+test('adds the photo-first composition hooks', () => {
+  assert.match(pageSource, /className="announcementBar"/);
+  assert.match(pageSource, /className="heroPoster heroOverlay"/);
+  assert.match(pageSource, /className="sectionFrame menuFrame menuDeck"/);
   assert.match(pageSource, /className="streetTicker"/);
   assert.match(pageSource, /className="sectionIndex"/);
   assert.match(pageSource, /className="sectionFrame/);
+});
+
+test('uses one condensed display family and one matching body family', () => {
+  assert.match(layoutSource, /import \{ Barlow, Barlow_Condensed \} from "next\/font\/google"/);
+  assert.match(layoutSource, /variable: "--font-body"/);
+  assert.match(layoutSource, /variable: "--font-display"/);
+  assert.doesNotMatch(layoutSource, /Playfair_Display|Karla/);
 });
 
 test('keeps interactive component boundaries unchanged', () => {
