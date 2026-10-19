@@ -15,6 +15,10 @@ export default function Home() {
         Zum Inhalt springen
       </a>
 
+      <div className="announcementBar" aria-label="BUNEX Aktuell">
+        <p>BUNEX Teltow · Frisch gesmasht · Sieben Tage die Woche · BUNEX Teltow · Frisch gesmasht</p>
+      </div>
+
       <header className="siteHeader">
         <div className="headerInner">
           <a className="brand" href="#top" aria-label="BUNEX Startseite">
@@ -36,7 +40,7 @@ export default function Home() {
 
       <main id="main">
         <section className="hero" id="top" aria-labelledby="heroTitle">
-          <div className="heroPoster">
+          <div className="heroPoster heroOverlay">
             <div className="heroCopy">
               <p className="eyebrow">Smashburger · Teltow</p>
               <h1 id="heroTitle">Smash mit Kante.<br /><em>Saftig</em> bis zum letzten Biss.</h1>
@@ -58,7 +62,7 @@ export default function Home() {
                 alt="BUNEX Double Smashburger mit knusprigen Pattys, Käse, Gurken und Soße"
                 fill
                 preload
-                sizes="(max-width: 1100px) 100vw, 54vw"
+                sizes="100vw"
               />
               <div className="heroBadge">
                 <span>Made to order</span>
@@ -78,7 +82,7 @@ export default function Home() {
         </section>
 
         <section className="menuSection" id="karte" aria-labelledby="menuTitle">
-          <div className="sectionFrame menuFrame">
+          <div className="sectionFrame menuFrame menuDeck">
             <div className="sectionIntro menuHeading">
               <span className="sectionIndex" aria-hidden="true">01</span>
               <div>

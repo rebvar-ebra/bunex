@@ -1,14 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Karla, Playfair_Display } from "next/font/google";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 
-const karla = Karla({
+const barlow = Barlow({
+  weight: ["400", "600", "700", "800"],
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const barlowCondensed = Barlow_Condensed({
+  weight: ["600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
@@ -29,7 +31,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className={`${karla.variable} ${playfair.variable}`}>
+    <html lang="de" className={`${barlow.variable} ${barlowCondensed.variable}`}>
       <body>{children}</body>
     </html>
   );

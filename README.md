@@ -1,11 +1,11 @@
 # BUNEX Smashburger
 
-The official website for BUNEX Smashburger in Teltow. It presents the restaurant, photographed menu, opening status, customer reviews, directions, and direct online ordering in a fast, responsive Street Press experience.
+The official website for BUNEX Smashburger in Teltow. It presents the restaurant, photographed menu, opening status, customer reviews, directions, and direct online ordering in a fast, responsive photo-first experience.
 
 ## Current features
 
 - Responsive restaurant landing page in German
-- Original Street Press design with full-bleed food photography and poster-inspired composition
+- Original photo-first design with a full-bleed food hero and bold menu deck
 - Real BUNEX menu photography and published prices
 - Beef, chicken, veggie, and side filters
 - Locally remembered menu category and favorite
@@ -17,9 +17,9 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 
 ## Design direction
 
-The interface uses a deliberately bold BUNEX visual language: warm yellow and cream fields, near-black framing, brick-red accents, oversized Karla headlines, and selective Playfair Display details. Sharp rules, offset cards, and real restaurant photography create a street-food poster feel without copying another restaurant’s layout or identity.
+The interface uses a deliberately bold BUNEX visual language: vivid yellow, near-black, warm white, full-bleed restaurant photography, oversized Barlow Condensed headlines, pill-shaped controls, and rounded white menu cards. The result takes inspiration from contemporary smashburger sites while keeping BUNEX content, photography, functionality, and identity original.
 
-The responsive system collapses asymmetric desktop compositions into readable single-column mobile layouts. It retains visible keyboard focus, 44px minimum controls, reduced-motion support, safe mobile ordering-bar clearance, and protected wrapping for long German words.
+The responsive system scales from a four-column desktop menu to two columns on tablets and one column on phones. The mobile hero keeps the photograph and ordering action prominent, with a persistent bottom order bar. Every layout retains visible keyboard focus, 44px minimum controls, reduced-motion support, safe order-bar clearance, and protected wrapping for long German words.
 
 ## Technology
 
@@ -55,6 +55,8 @@ Before merging changes, run both:
 npm test
 npm run build
 ```
+
+The responsive release checklist covers 320, 375, 768, 1024, 1280, and 1440px viewports. It also verifies menu filters, favorite persistence, the local-storage disclosure, external destinations, the accessibility tree, and browser-console output.
 
 ## Project structure
 

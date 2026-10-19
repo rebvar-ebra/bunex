@@ -33,7 +33,7 @@ export function ReviewWall() {
           </div>
         </header>
 
-        <ul className="reviewGrid reviewCollage">
+        <ul className="reviewGrid reviewDeck">
           {reviews.map((review, index) => (
             <li className={`reviewCard reviewCard${index + 1}`} key={review.id}>
               <article className="reviewCardInner">
