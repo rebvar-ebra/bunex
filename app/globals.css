@@ -331,6 +331,136 @@ h1 em, h2 em { font-weight: 400; }
 .proofStrip p:last-child { border-right: 0; }
 .proofStrip span { color: var(--yellow); font-variant-numeric: tabular-nums lining-nums; }
 
+/* Street Press foundation */
+:root {
+  --yellow: #f4bd18;
+  --yellow-soft: #ffd85f;
+  --ink: #151510;
+  --paper: #eee9dc;
+  --cream: #fff8e9;
+  --green: #28543a;
+  --signal-red: #c83d24;
+  --border: rgba(21, 21, 16, 0.24);
+  --shadow: 10px 10px 0 rgba(21, 21, 16, 0.16);
+  --poster-edge: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+body {
+  font-size: clamp(16px, 1.05vw, 18px);
+  line-height: 1.45;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+h1, h2, h3 { overflow-wrap: break-word; }
+
+.siteHeader {
+  padding: 0 clamp(1rem, 3vw, 3rem);
+  background: var(--cream);
+  border-bottom: 2px solid var(--ink);
+  backdrop-filter: none;
+}
+
+.headerInner { width: min(1540px, 100%); min-height: 76px; }
+.brand { font-size: clamp(1.35rem, 2vw, 1.8rem); }
+.siteHeader nav a { min-height: 44px; display: inline-flex; align-items: center; font-weight: 800; }
+.openingStatus { font-weight: 800; }
+.openingStatus i { background: var(--signal-red); box-shadow: 0 0 0 3px rgba(200, 61, 36, 0.16); }
+
+.button {
+  min-height: 50px;
+  border: 2px solid var(--ink);
+  border-radius: var(--poster-edge);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.button:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+.buttonSmall { min-height: 44px; padding: 0.65rem 1rem; font-size: 0.65rem; }
+
+.hero {
+  min-height: auto;
+  display: block;
+  padding: clamp(0.9rem, 2vw, 1.8rem);
+  background: var(--ink);
+}
+
+.heroPoster {
+  width: min(1600px, 100%);
+  min-height: calc(100svh - 112px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  margin: 0 auto;
+  background: var(--yellow);
+  border: 2px solid var(--cream);
+}
+
+.heroCopy {
+  z-index: 2;
+  padding: clamp(3.5rem, 6.5vw, 7.5rem) clamp(1.4rem, 4.5vw, 5rem);
+  border-right: 2px solid var(--ink);
+}
+
+.eyebrow, .memoryLabel { margin-bottom: 1.15rem; font-weight: 800; letter-spacing: 0.1em; }
+.eyebrow::before { width: 32px; height: 2px; margin-right: 0.65rem; }
+
+.hero h1, .sectionIntro h2, .smashCopy h2, .visitCopy h2 {
+  font-family: var(--body);
+  font-weight: 800;
+  letter-spacing: -0.065em;
+}
+
+.hero h1 {
+  max-width: 8.8ch;
+  font-size: clamp(4rem, 7vw, 8.8rem);
+  line-height: 0.8;
+  text-transform: uppercase;
+}
+
+h1 em, h2 em { font-family: var(--display); font-weight: 400; text-transform: none; }
+.heroIntro { max-width: 30rem; font-weight: 650; }
+.heroCta { margin-top: 2rem; }
+.textLink { border-bottom-width: 2px; font-weight: 800; }
+.heroStatus { margin-top: 2.4rem; }
+
+.heroVisual {
+  min-height: 650px;
+  aspect-ratio: 5 / 6;
+  background: #d99404;
+}
+
+.heroVisual::after { background: linear-gradient(180deg, transparent 48%, rgba(21, 21, 16, 0.72)); }
+
+.heroBadge {
+  width: 132px;
+  color: var(--cream);
+  background: var(--signal-red);
+  border: 2px solid var(--cream);
+  border-radius: var(--poster-edge);
+  transform: rotate(5deg);
+}
+
+.heroBadge span, .heroCaption { font-weight: 800; }
+.heroCaption { right: 1.5rem; bottom: 1.3rem; left: 1.5rem; text-align: right; }
+
+.proofStrip {
+  display: block;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--yellow);
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+}
+
+.streetTicker {
+  min-width: max-content;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(17rem, 1fr));
+}
+
+.proofStrip p { min-height: 76px; padding: 0 2rem; border-right: 2px solid var(--ink); font-weight: 800; }
+.proofStrip span { color: var(--signal-red); }
+
 .menuSection { padding: clamp(5.5rem, 9vw, 10rem) 4vw; }
 .sectionIntro, .menuSection > :not(.sectionIntro) { width: min(1460px, 100%); margin-right: auto; margin-left: auto; }
 
@@ -711,6 +841,9 @@ h1 em, h2 em { font-weight: 400; }
   .headerInner { min-height: 64px; }
   .headerActions { display: none; }
   .brand { font-size: 1.25rem; }
+  .hero { padding: 0.7rem; }
+  .heroPoster { min-height: 0; grid-template-columns: 1fr; }
+  .heroCopy { border-right: 0; border-bottom: 2px solid var(--ink); }
   .heroCopy { min-height: auto; padding: 4.5rem 1.25rem 3.5rem; }
   .hero h1 { font-size: clamp(3.4rem, 16vw, 5.5rem); }
   .heroIntro { font-size: 1rem; }
@@ -718,11 +851,12 @@ h1 em, h2 em { font-weight: 400; }
   .heroCta .button { width: 100%; }
   .textLink { align-self: flex-start; }
   .heroStatus { margin-top: 2rem; }
-  .heroVisual { min-height: 480px; }
+  .heroVisual { min-height: 420px; aspect-ratio: 1 / 1.18; }
   .heroVisual > img { object-position: 64% center; }
   .heroBadge { width: 108px; }
   .heroCaption { right: 1rem; bottom: 1rem; left: 1rem; text-align: center; }
-  .proofStrip { grid-template-columns: 1fr; padding: 0.4rem 1.25rem; }
+  .proofStrip { grid-template-columns: 1fr; padding: 0; }
+  .streetTicker { min-width: 0; grid-template-columns: 1fr; }
   .proofStrip p { min-height: 62px; justify-content: flex-start; border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.14); text-align: left; }
   .proofStrip p:last-child { border-bottom: 0; }
   .menuSection { padding: 5rem 1.25rem; }
