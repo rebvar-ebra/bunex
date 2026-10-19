@@ -10,6 +10,7 @@ export function ReviewWall() {
       <div className="reviewInner">
         <header className="reviewHeader">
           <div>
+            <span className="sectionIndex" aria-hidden="true">03</span>
             <p className="eyebrow eyebrowLight">Von Gästen empfohlen</p>
             <h2 id="reviewsTitle">
               Lecker gesagt.<br />
@@ -32,7 +33,7 @@ export function ReviewWall() {
           </div>
         </header>
 
-        <ul className="reviewGrid">
+        <ul className="reviewGrid reviewCollage">
           {reviews.map((review, index) => (
             <li className={`reviewCard reviewCard${index + 1}`} key={review.id}>
               <article className="reviewCardInner">

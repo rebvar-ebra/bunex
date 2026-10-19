@@ -4,6 +4,8 @@ import { readFile } from 'node:fs/promises';
 
 const pageSource = await readFile(new URL('../app/page.tsx', import.meta.url), 'utf8');
 const stylesheetSource = await readFile(new URL('../app/globals.css', import.meta.url), 'utf8');
+const menuSource = await readFile(new URL('../components/menu-showcase.tsx', import.meta.url), 'utf8');
+const reviewSource = await readFile(new URL('../components/review-wall.tsx', import.meta.url), 'utf8');
 
 test('preserves every homepage section and ordering action', () => {
   for (const anchor of ['top', 'karte', 'smash', 'besuch']) {
@@ -61,4 +63,28 @@ test('collapses the street press hero and ticker without mobile overflow', () =>
 
   assert.match(mobileRules, /\.heroPoster\s*\{[^}]*grid-template-columns:\s*1fr/s);
   assert.match(mobileRules, /\.streetTicker\s*\{[^}]*min-width:\s*0[^}]*grid-template-columns:\s*1fr/s);
+});
+
+test('provides poster hooks without changing menu memory behavior', () => {
+  assert.match(menuSource, /className="memoryPanel memoryReceipt"/);
+  assert.match(menuSource, /className="productGrid posterGrid"/);
+  assert.match(menuSource, /className="priceStamp"/);
+  assert.match(menuSource, /localStorage\.getItem\(memoryKey\)/);
+  assert.match(menuSource, /localStorage\.removeItem\(memoryKey\)/);
+  assert.match(menuSource, /Nur deine letzte Kategorie und dein Favorit—lokal in diesem Browser, ohne Konto\./);
+});
+
+test('provides an original review collage with preserved attribution', () => {
+  assert.match(reviewSource, /className="reviewGrid reviewCollage"/);
+  assert.match(reviewSource, /className="sectionIndex"/);
+  assert.match(reviewSource, /<blockquote>/);
+  assert.match(stylesheetSource, /\.reviewCard blockquote\s*\{[^}]*overflow-wrap:\s*anywhere/s);
+  assert.match(stylesheetSource, /\.reviewCard3 \.reviewAttribution > span\s*\{[^}]*opacity:\s*1/s);
+});
+
+test('reserves product imagery and keeps controls touch-safe', () => {
+  assert.match(stylesheetSource, /\.productImage\s*\{[^}]*aspect-ratio:/s);
+  assert.match(stylesheetSource, /\.productInfo strong\s*\{[^}]*font-variant-numeric:\s*tabular-nums/s);
+  assert.match(stylesheetSource, /\.menuFilters button\s*\{[^}]*min-height:\s*(?:4[4-9]|[5-9]\d)px/s);
+  assert.match(stylesheetSource, /\.favoriteButton\s*\{[^}]*width:\s*(?:4[4-9]|[5-9]\d)px[^}]*height:\s*(?:4[4-9]|[5-9]\d)px/s);
 });

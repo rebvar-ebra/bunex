@@ -61,7 +61,7 @@ export function MenuShowcase() {
 
   return (
     <>
-      <aside className="memoryPanel" aria-labelledby="memoryTitle">
+      <aside className="memoryPanel memoryReceipt" aria-labelledby="memoryTitle">
         <div>
           <p className="memoryLabel">Dein nächster Smash</p>
           <h3 id="memoryTitle">
@@ -105,7 +105,7 @@ export function MenuShowcase() {
         {items.length === 1 ? "1 Eintrag angezeigt" : `${items.length} Einträge angezeigt`}
       </p>
 
-      <div className="productGrid">
+      <div className="productGrid posterGrid">
         {items.map((item, index) => (
           <article className="productCard" key={item.name}>
             <div className="productImage">
@@ -132,7 +132,7 @@ export function MenuShowcase() {
               <p>{categories.find(([value]) => value === item.category)?.[1] ?? item.category}</p>
               <div>
                 <h3>{item.name}</h3>
-                <strong>{item.price}</strong>
+                <strong className="priceStamp">{item.price}</strong>
               </div>
             </div>
           </article>
