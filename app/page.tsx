@@ -1,0 +1,136 @@
+import Image from "next/image";
+import { MenuShowcase } from "@/components/menu-showcase";
+import { OpeningStatus } from "@/components/opening-status";
+import heroImage from "@/assets/bunex-smashburger-hero.webp";
+
+const orderUrl = "https://bunexsmashburger.online-karte.com/bunexsmashburger";
+const routeUrl =
+  "https://www.google.com/maps/search/?api=1&query=Bunex+Smash+Burger+Potsdamer+Str.+61+Teltow";
+
+export default function Home() {
+  return (
+    <>
+      <a className="skipLink" href="#main">
+        Zum Inhalt springen
+      </a>
+
+      <header className="siteHeader">
+        <div className="headerInner">
+          <a className="brand" href="#top" aria-label="BUNEX Startseite">
+            BUN<span>EX</span>
+          </a>
+          <nav aria-label="Hauptnavigation">
+            <a href="#karte">Speisekarte</a>
+            <a href="#smash">Unser Smash</a>
+            <a href="#besuch">Besuch uns</a>
+          </nav>
+          <div className="headerActions">
+            <OpeningStatus />
+            <a className="button buttonDark buttonSmall" href={orderUrl} target="_blank" rel="noreferrer">
+              Online bestellen
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main id="main">
+        <section className="hero" id="top" aria-labelledby="heroTitle">
+          <div className="heroCopy">
+            <p className="eyebrow">Smashburger · Teltow</p>
+            <h1 id="heroTitle">Smash mit Kante.<br /><em>Saftig</em> bis zum letzten Biss.</h1>
+            <p className="heroIntro">
+              Frisch gepresst, kräftig gebräunt und genau dann gebaut, wenn du bestellst.
+            </p>
+            <div className="heroCta">
+              <a className="button buttonDark" href={orderUrl} target="_blank" rel="noreferrer">
+                Jetzt online bestellen
+              </a>
+              <a className="textLink" href="#karte">Menü entdecken</a>
+            </div>
+            <div className="heroStatus"><OpeningStatus /></div>
+          </div>
+
+          <div className="heroVisual">
+            <Image
+              src={heroImage}
+              alt="BUNEX Double Smashburger mit knusprigen Pattys, Käse, Gurken und Soße"
+              fill
+              preload
+              sizes="(max-width: 1100px) 100vw, 54vw"
+            />
+            <div className="heroBadge">
+              <span>Made to order</span>
+              <strong>100 % Smash</strong>
+            </div>
+            <p className="heroCaption">Echtes BUNEX Food · Fotografiert in Teltow</p>
+          </div>
+        </section>
+
+        <section className="proofStrip" aria-label="BUNEX Versprechen">
+          <p><span>01</span> Frisch gesmasht</p>
+          <p><span>02</span> Auf Bestellung gebaut</p>
+          <p><span>03</span> Mit echten Produktfotos</p>
+        </section>
+
+        <section className="menuSection" id="karte" aria-labelledby="menuTitle">
+          <div className="sectionIntro menuHeading">
+            <div>
+              <p className="eyebrow">Dein Menü</p>
+              <h2 id="menuTitle">Finde den Smash,<br />der heute <em>passt.</em></h2>
+            </div>
+            <p>
+              Beef, Chicken oder Veggie: Filtere die Auswahl, merke dir deinen Favoriten und steige beim nächsten Besuch dort wieder ein.
+            </p>
+          </div>
+          <MenuShowcase />
+        </section>
+
+        <section className="smashSection" id="smash" aria-labelledby="smashTitle">
+          <div className="smashImage">
+            <Image
+              src="/menu/bbq-burger.webp"
+              alt="BUNEX BBQ Burger mit zwei knusprig gebräunten Smash Pattys"
+              fill
+              sizes="(max-width: 900px) 100vw, 46vw"
+            />
+            <p>Die Kante macht den Smash.</p>
+          </div>
+          <div className="smashCopy">
+            <p className="eyebrow eyebrowLight">Warum Smash?</p>
+            <h2 id="smashTitle">Drei Schritte.<br />Ein klarer Unterschied.</h2>
+            <ol className="smashSteps">
+              <li><span>01</span><div><h3>Press</h3><p>Das Patty kommt direkt auf die heiße Platte und wird sofort flach gepresst.</p></div></li>
+              <li><span>02</span><div><h3>Sizzle</h3><p>Volle Hitze baut die kräftige Kruste auf, während das Innere saftig bleibt.</p></div></li>
+              <li><span>03</span><div><h3>Stack</h3><p>American Cheese, weiche Buns und abgestimmte Soßen machen ihn komplett.</p></div></li>
+            </ol>
+          </div>
+        </section>
+
+        <section className="visitSection" id="besuch" aria-labelledby="visitTitle">
+          <div className="visitCopy">
+            <p className="eyebrow">Komm vorbei</p>
+            <h2 id="visitTitle">Dein Tisch ist nah.<br /><em>Teltow</em> auch.</h2>
+            <p className="visitLead">Potsdamer Straße 61. Frisch von der Platte, sieben Tage die Woche.</p>
+            <a className="button buttonDark" href={routeUrl} target="_blank" rel="noreferrer">Route in Google Maps</a>
+          </div>
+          <div className="visitDetails">
+            <div><span>Adresse</span><strong>Potsdamer Str. 61<br />14513 Teltow</strong></div>
+            <div><span>Öffnungszeiten</span><strong>So–Do&nbsp; 11:30–23:00<br />Fr–Sa&nbsp; 11:30–00:00</strong></div>
+            <div><span>Instagram</span><a href="https://instagram.com/bunexsmashburger" target="_blank" rel="noreferrer">@bunexsmashburger</a></div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="siteFooter">
+        <a className="brand" href="#top" aria-label="Zurück nach oben">BUN<span>EX</span></a>
+        <p>Frisch gesmasht in Teltow.</p>
+        <div><span>Impressum folgt</span><span>Datenschutz folgt</span><span>{"©\u00a02026 BUNEX"}</span></div>
+      </footer>
+
+      <div className="mobileOrderBar">
+        <OpeningStatus compact />
+        <a href={orderUrl} target="_blank" rel="noreferrer">Jetzt bestellen</a>
+      </div>
+    </>
+  );
+}
