@@ -77,6 +77,7 @@ docs/         Design specifications and implementation plans
 - Curated review excerpts: `lib/reviews.mjs`
 - Address, ordering, Maps, and Instagram links: `app/page.tsx`
 - Page metadata: `app/layout.tsx`
+- Editorial photo for the “Warum Smash?” section: `public/bunex-smash-process.jpg`
 
 Google reviews are intentionally curated without a paid API. When changing them, verify the wording against the public source, keep the source link intact, update `reviewUpdateLabel`, and run the tests.
 
