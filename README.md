@@ -12,6 +12,7 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 - Live open/closed status using Europe/Berlin time
 - Curated Google review wall with transparent manual-update date
 - Direct links for online ordering, Google Maps, and Instagram
+- Footer ownership and developer attribution
 - Keyboard navigation, semantic landmarks, and mobile ordering bar
 - Static rendering for a lightweight production deployment
 
