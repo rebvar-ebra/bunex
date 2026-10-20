@@ -20,7 +20,9 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 
 ## Design direction
 
-The interface uses a deliberately bold BUNEX visual language: vivid yellow, near-black, warm white, full-bleed restaurant photography, oversized Barlow Condensed headlines, pill-shaped controls, and rounded white menu cards. The result takes inspiration from contemporary smashburger sites while keeping BUNEX content, photography, functionality, and identity original.
+The interface combines BUNEX yellow, near-black, warm white, full-bleed restaurant photography, pill-shaped controls, and rounded white menu cards. Barlow supplies readable mixed-case headings and body text; Barlow Condensed is reserved for the compact brand mark and badge. The hero heading scales from 32–44px on phones to a maximum of 64px on desktop; section headings stay within 28–44px, menu names at 18px, and review text at 18px. These bounds, comfortable line spacing, and compact section spacing keep content ahead of decorative typography.
+
+The hero text participates in normal layout flow with reserved space below the navigation, so shorter screens and enlarged text do not cause clipping or overlap. Emphasized text on yellow sections inherits the dark text color to keep every word visible. When changing typography, verify the rendered layout at desktop and mobile widths, including 200% zoom, rather than only checking CSS values.
 
 The responsive system scales from a four-column desktop menu to two columns on tablets and one column on phones. The mobile hero keeps the photograph and ordering action prominent, with a persistent bottom order bar. Every layout retains visible keyboard focus, 44px minimum controls, reduced-motion support, safe order-bar clearance, and protected wrapping for long German words.
 

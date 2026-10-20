@@ -74,7 +74,6 @@ test('defines the accessible photo-first visual foundation', () => {
   assert.match(stylesheetSource, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(/s);
   assert.match(stylesheetSource, /\.announcementBar\s*\{[^}]*background:\s*var\(--yellow\)[^}]*color:\s*var\(--ink\)/s);
   assert.match(stylesheetSource, /\.siteHeader\s*\{[^}]*position:\s*absolute[^}]*background:\s*transparent/s);
-  assert.match(stylesheetSource, /\.heroOverlay\s*\{[^}]*min-height:\s*calc\(100svh\s*-\s*36px\)/s);
   assert.match(stylesheetSource, /\.heroVisual\s*\{[^}]*position:\s*absolute[^}]*inset:\s*0/s);
   assert.match(stylesheetSource, /\.heroVisual img\s*\{[^}]*object-fit:\s*cover/s);
   assert.match(stylesheetSource, /\.headerActions \.openingStatus\s*\{[^}]*background:\s*rgba\(0,0,0,\.72\)/s);
@@ -88,7 +87,6 @@ test('keeps the photo hero and menu fluid without mobile overflow', () => {
   const mobileRules = stylesheetSource.match(/@media \(max-width: 700px\)\s*\{[\s\S]+?\n\}/)?.[0] ?? '';
 
   assert.match(mobileRules, /\.siteHeader nav,\s*\.headerActions\s*\{[^}]*display:\s*none/s);
-  assert.match(mobileRules, /\.heroOverlay\s*\{[^}]*min-height:\s*720px/s);
   assert.match(mobileRules, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(/s);
   assert.match(mobileRules, /\.heroBadge\s*\{[^}]*display:\s*none/s);
   assert.match(mobileRules, /\.productGrid\s*\{[^}]*grid-template-columns:\s*1fr/s);
