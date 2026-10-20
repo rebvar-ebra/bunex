@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { AnnouncementTicker } from "@/components/announcement-ticker";
+import { Icon } from "@/components/icons";
 import { MenuShowcase } from "@/components/menu-showcase";
 import { OpeningStatus } from "@/components/opening-status";
 import { ReviewWall } from "@/components/review-wall";
@@ -33,6 +34,7 @@ export default function Home() {
           <div className="headerActions">
             <OpeningStatus />
             <a className="button buttonDark buttonSmall" href={orderUrl} target="_blank" rel="noreferrer">
+              <Icon name="shoppingBag" />
               Online bestellen
             </a>
           </div>
@@ -50,6 +52,7 @@ export default function Home() {
               </p>
               <div className="heroCta">
                 <a className="button buttonDark" href={orderUrl} target="_blank" rel="noreferrer">
+                  <Icon name="shoppingBag" />
                   Jetzt online bestellen
                 </a>
                 <a className="textLink" href="#karte">Menü entdecken</a>
@@ -128,12 +131,12 @@ export default function Home() {
             <p className="eyebrow">Komm vorbei</p>
             <h2 id="visitTitle">Dein Tisch ist nah.<br /><em>Teltow</em> auch.</h2>
             <p className="visitLead">Potsdamer Straße 61. Frisch von der Platte, sieben Tage die Woche.</p>
-            <a className="button buttonDark" href={routeUrl} target="_blank" rel="noreferrer">Route in Google Maps</a>
+            <a className="button buttonDark" href={routeUrl} target="_blank" rel="noreferrer"><Icon name="mapPin" />Route in Google Maps</a>
           </div>
           <div className="visitDetails">
             <div><span>Adresse</span><strong>Potsdamer Str. 61<br />14513 Teltow</strong></div>
             <div><span>Öffnungszeiten</span><strong>So–Do&nbsp; 11:30–23:00<br />Fr–Sa&nbsp; 11:30–00:00</strong></div>
-            <div><span>Instagram</span><a href="https://instagram.com/bunexsmashburger" target="_blank" rel="noreferrer">@bunexsmashburger</a></div>
+            <div><span>Instagram</span><a className="socialLink" href="https://instagram.com/bunexsmashburger" target="_blank" rel="noreferrer"><Icon name="instagram" />@bunexsmashburger</a></div>
           </div>
         </section>
       </main>
@@ -142,6 +145,7 @@ export default function Home() {
         <a className="brand" href="#top" aria-label="Zurück nach oben">BUN<span>EX</span></a>
         <p>Frisch gesmasht in Teltow.</p>
         <div>
+          <a className="footerSocial" href="https://instagram.com/bunexsmashburger" target="_blank" rel="noreferrer"><Icon name="instagram" />Instagram</a>
           <span>Impressum folgt</span>
           <span>Datenschutz folgt</span>
           <span>{"©\u00a02026 BUNEX"}</span>
@@ -151,7 +155,7 @@ export default function Home() {
 
       <div className="mobileOrderBar">
         <OpeningStatus compact />
-        <a href={orderUrl} target="_blank" rel="noreferrer">Jetzt bestellen</a>
+        <a href={orderUrl} target="_blank" rel="noreferrer"><Icon name="shoppingBag" />Jetzt bestellen</a>
       </div>
     </>
   );

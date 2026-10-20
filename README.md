@@ -14,6 +14,7 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 - Live open/closed status using Europe/Berlin time
 - Curated Google review wall with transparent manual-update date
 - Direct links for online ordering, Google Maps, and Instagram
+- Consistent local SVG icons for Instagram, Google reviews, directions, and online ordering
 - Footer ownership and developer attribution
 - Installable Progressive Web App for phones and desktops
 - Versioned offline support with a branded, self-contained fallback page
@@ -36,6 +37,15 @@ The responsive system scales from a four-column desktop menu to two columns on t
 - Native Web App Manifest, Service Worker, and Cache Storage APIs
 - CSS without a component-library dependency
 - Node.js built-in test runner
+
+## Icons
+
+`components/icons.tsx` contains the selected Tabler outline icons, sourced with the
+`better-icons` skill and CLI via Iconify. They render as local SVGs: no icon CDN
+requests, runtime icon package, or extra client-side state is needed. Keep visible
+link labels alongside these decorative icons (`aria-hidden="true"`). Add only
+social links with verified restaurant destinations; WhatsApp ordering is not yet
+connected. Attribution is in `docs/licenses/tabler-icons.txt`.
 
 ## Local development
 

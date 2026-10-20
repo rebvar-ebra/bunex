@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Icon } from "@/components/icons";
 import { useEffect, useState } from "react";
 import { getMenuItems, menuItems } from "@/lib/menu.mjs";
 import {
@@ -143,7 +144,7 @@ export function MenuShowcase() {
       <div className="comboBanner">
         <p className="comboPrice">+6&nbsp;€</p>
         <div><p>Mach mehr daraus</p><h3>BUNEX Menu</h3><span>Pommes, Getränk, Salat und Soße dazu.</span></div>
-        <a className="button buttonLight" href={orderUrl} target="_blank" rel="noreferrer">Zur Online-Karte</a>
+        <a className="button buttonLight" href={orderUrl} target="_blank" rel="noreferrer"><Icon name="shoppingBag" />Zur Online-Karte</a>
       </div>
       <p className="allergenNote">Allergene: A Gluten, C Eier, F Soja, G Milch, M Senf. Fragen zu Zutaten beantworten wir gern vor Ort.</p>
     </>

@@ -3,6 +3,7 @@ import {
   reviews,
   reviewsUpdatedLabel,
 } from "@/lib/reviews.mjs";
+import { Icon } from "@/components/icons";
 
 export function ReviewWall() {
   return (
@@ -28,6 +29,7 @@ export function ReviewWall() {
               target="_blank"
               rel="noreferrer"
             >
+              <Icon name="google" />
               Alle Google-Rezensionen ansehen
             </a>
           </div>
@@ -44,9 +46,9 @@ export function ReviewWall() {
                   rel="noreferrer"
                   aria-label={`${review.sourceLabel} auf Google Maps ansehen`}
                 >
-                  <span className="reviewSourceMark" aria-hidden="true">G</span>
+                  <span className="reviewSourceMark" aria-hidden="true"><Icon name="google" /></span>
                   <span translate="no">Google Maps</span>
-                  <span className="reviewArrow" aria-hidden="true">↗</span>
+                  <span className="reviewArrow" aria-hidden="true"><Icon name="arrowUpRight" /></span>
                 </a>
                 <blockquote>“{review.quote}”</blockquote>
                 <span className="reviewAttribution">
