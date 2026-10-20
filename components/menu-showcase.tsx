@@ -134,6 +134,7 @@ export function MenuShowcase() {
                 <h3>{item.name}</h3>
                 <strong className="priceTag">{item.price}</strong>
               </div>
+              {item.ingredients ? <p className="productIngredients">{item.ingredients}</p> : null}
             </div>
           </article>
         ))}
@@ -141,7 +142,7 @@ export function MenuShowcase() {
 
       <div className="comboBanner">
         <p className="comboPrice">+6&nbsp;€</p>
-        <div><p>Mach mehr daraus</p><h3>BUNEX Combo</h3><span>Pommes, Getränk, Salat und Soße dazu.</span></div>
+        <div><p>Mach mehr daraus</p><h3>BUNEX Menu</h3><span>Pommes, Getränk, Salat und Soße dazu.</span></div>
         <a className="button buttonLight" href={orderUrl} target="_blank" rel="noreferrer">Zur Online-Karte</a>
       </div>
       <p className="allergenNote">Allergene: A Gluten, C Eier, F Soja, G Milch, M Senf. Fragen zu Zutaten beantworten wir gern vor Ort.</p>

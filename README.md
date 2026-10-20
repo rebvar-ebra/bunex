@@ -6,7 +6,9 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 
 - Responsive restaurant landing page in German
 - Original photo-first design with a full-bleed food hero and bold menu deck
-- Real BUNEX menu photography and published prices
+- Real BUNEX menu photography, published prices, and burger ingredients transcribed from the supplied restaurant menu
+- Left-scrolling announcement strip with a pause/resume control and a static reduced-motion alternative
+- BUNEX Menu upgrade for +6 €
 - Beef, chicken, veggie, and side filters
 - Locally remembered menu category and favorite
 - Live open/closed status using Europe/Berlin time
@@ -78,7 +80,9 @@ docs/         Design specifications and implementation plans
 
 ## Updating restaurant content
 
-- Menu items and prices: `lib/menu.mjs`
+- Menu items, prices, and optional `ingredients` descriptions: `lib/menu.mjs`. Keep ingredient wording aligned with the restaurant menu; do not infer missing ingredients or allergen guarantees from photographs.
+- BUNEX Menu upgrade label and contents: `components/menu-showcase.tsx`
+- Announcement text: `components/announcement-ticker.tsx`; speed and direction: `announcement-scroll` in `app/globals.css`. Keep both visual copies identical for a seamless loop, hide the repeated text from assistive technology, and preserve pause/resume and reduced-motion support.
 - Opening hours: `lib/opening-hours.mjs`
 - Curated review excerpts: `lib/reviews.mjs`
 - Address, ordering, Maps, and Instagram links: `app/page.tsx`
