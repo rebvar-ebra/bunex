@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AnnouncementTicker } from "@/components/announcement-ticker";
 import { MenuShowcase } from "@/components/menu-showcase";
 import { OpeningStatus } from "@/components/opening-status";
 import { ReviewWall } from "@/components/review-wall";
@@ -16,7 +17,7 @@ export default function Home() {
       </a>
 
       <div className="announcementBar" aria-label="BUNEX Aktuell">
-        <p>BUNEX Teltow · Frisch gesmasht · Sieben Tage die Woche · BUNEX Teltow · Frisch gesmasht</p>
+        <AnnouncementTicker />
       </div>
 
       <header className="siteHeader">
