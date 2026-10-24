@@ -4,6 +4,8 @@
   --cream: #f7f4ec;
   --white: #ffffff;
   --green: #2f7a46;
+  --purple: #5b21b6;
+  --purple-deep: #2e1065;
   --muted: #68675f;
   --card-radius: 22px;
   --pill-radius: 999px;
@@ -181,9 +183,16 @@ img { max-width: 100%; }
   padding: 152px max(var(--page-pad), calc((100% - var(--page-width)) / 2)) 96px;
   overflow: hidden;
 }
-.heroVisual { position: absolute; inset: 0; background: #594026; }
+.heroVisual { position: absolute; inset: 0; background: var(--purple-deep); }
 .heroVisual img { object-fit: cover; object-position: 58% center; }
-.heroVisual::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.8) 0%, rgba(0,0,0,.54) 38%, rgba(0,0,0,.1) 72%), linear-gradient(0deg, rgba(0,0,0,.42) 0%, transparent 45%); content: ""; }
+.heroVisual::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(46,16,101,.96) 0%, rgba(91,33,182,.76) 34%, rgba(46,16,101,.3) 60%, rgba(10,10,8,.08) 76%),
+    linear-gradient(0deg, rgba(10,10,8,.52) 0%, transparent 48%);
+  content: "";
+}
 
 .heroCopy {
   position: relative;
@@ -198,7 +207,16 @@ img { max-width: 100%; }
 .eyebrowLight { color: var(--yellow); }
 
 .hero h1 { max-width: 18ch; font-size: clamp(2.25rem, 4.4vw, 4rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; }
-.hero h1 em { color: var(--yellow); font-style: normal; }
+.hero h1 em {
+  display: inline-block;
+  padding: 0 .16em .06em;
+  color: var(--yellow);
+  background: var(--purple);
+  border-radius: .12em;
+  box-shadow: .08em .08em 0 var(--yellow);
+  font-style: normal;
+  transform: rotate(-1deg);
+}
 .sectionIntro h2 em, .visitCopy h2 em { color: inherit; font-style: normal; }
 .heroIntro { max-width: 45ch; margin-top: 1.5rem; font-size: clamp(1rem, 1.3vw, 1.125rem); font-weight: 400; }
 .heroCta { display: flex; align-items: center; gap: 1.4rem; margin-top: 1.8rem; }
@@ -206,12 +224,12 @@ img { max-width: 100%; }
 .textLink { min-height: 44px; display: inline-flex; align-items: center; border-bottom: 2px solid currentColor; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-decoration: none; text-transform: uppercase; }
 .heroStatus { display: none; margin-top: 1.6rem; }
 
-.heroBadge { position: absolute; z-index: 2; top: clamp(8rem, 15vh, 11rem); right: var(--page-pad); width: clamp(108px, 10vw, 150px); aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--ink); background: var(--yellow); border-radius: 50%; text-align: center; transform: rotate(7deg); }
-.heroBadge span { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.heroBadge { position: absolute; z-index: 2; top: clamp(8rem, 15vh, 11rem); right: var(--page-pad); width: clamp(108px, 10vw, 150px); aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--white); background: var(--purple); border: 3px solid var(--yellow); border-radius: 50%; box-shadow: 0 16px 38px rgba(46,16,101,.4); text-align: center; transform: rotate(7deg); }
+.heroBadge span { color: var(--yellow); font-size: 0.58rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 .heroBadge strong { max-width: 6ch; margin-top: 0.2rem; font-family: var(--display); font-size: 1.3rem; line-height: 0.95; text-transform: uppercase; }
 .heroCaption { position: absolute; z-index: 2; right: var(--page-pad); bottom: 2rem; color: var(--white); font-size: 0.62rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
 
-.proofStrip { color: var(--cream); background: var(--ink); }
+.proofStrip { color: var(--cream); background: var(--purple-deep); }
 .streetTicker { width: min(var(--page-width), 100%); display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 auto; }
 .proofStrip p { min-height: 82px; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem; border-right: 1px solid rgba(255,255,255,.18); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-align: center; text-transform: uppercase; }
 .proofStrip p:last-child { border-right: 0; }
@@ -291,10 +309,10 @@ img { max-width: 100%; }
 .reviewCard { min-width: 0; }
 .reviewCardInner { height: 100%; min-height: 280px; display: flex; flex-direction: column; padding: clamp(1.4rem, 2.5vw, 2rem); color: var(--ink); background: var(--white); border-radius: var(--card-radius); }
 .reviewCard2 .reviewCardInner { background: var(--yellow); }
-.reviewCard3 .reviewCardInner { color: var(--cream); background: #254b32; }
+.reviewCard3 .reviewCardInner { color: var(--cream); background: var(--purple-deep); }
 .reviewSourceLink { min-height: 44px; display: flex; align-items: center; gap: 0.6rem; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; }
 .reviewSourceMark { width: 28px; height: 28px; display: grid; place-items: center; color: var(--cream); background: var(--ink); border-radius: 50%; font-size: 0.72rem; }
-.reviewCard3 .reviewSourceMark { color: #254b32; background: var(--cream); }
+.reviewCard3 .reviewSourceMark { color: var(--purple-deep); background: var(--cream); }
 .reviewArrow { margin-left: auto; font-size: 1.2rem; }
 .reviewSourceMark .uiIcon { width: 17px; height: 17px; }
 .reviewCard blockquote { margin: auto 0; padding: 1.5rem 0; font-family: var(--body); font-size: 1.125rem; font-weight: 400; line-height: 1.55; overflow-wrap: anywhere; }
@@ -352,7 +370,7 @@ img { max-width: 100%; }
   .heroOverlay { min-height: 640px; align-items: flex-end; padding: 120px 1.15rem 40px; }
   .heroVisual { min-width: 0; min-height: 0; }
   .heroVisual img { object-position: 61% center; }
-  .heroVisual::after { background: linear-gradient(0deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.44) 58%, rgba(0,0,0,.18) 100%); }
+  .heroVisual::after { background: linear-gradient(0deg, rgba(25,7,52,.96) 0%, rgba(46,16,101,.64) 55%, rgba(10,10,8,.18) 100%); }
   .heroCopy { width: 100%; }
   .hero h1 { font-size: clamp(2rem, 7.5vw, 2.75rem); }
   .heroIntro { max-width: 28rem; font-size: 1rem; }
