@@ -19,6 +19,7 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 - Installable Progressive Web App for phones and desktops
 - Versioned offline support with a branded, self-contained fallback page
 - Keyboard navigation, semantic landmarks, and mobile ordering bar
+- Branded German 404 page with clear routes back to the homepage and menu
 - Static rendering for a lightweight production deployment
 
 ## Design direction
