@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { AnnouncementTicker } from "@/components/announcement-ticker";
 import { Icon } from "@/components/icons";
 import { MenuShowcase } from "@/components/menu-showcase";
@@ -146,7 +147,7 @@ export default function Home() {
         <p>Frisch gesmasht in Teltow.</p>
         <div>
           <a className="footerSocial" href="https://instagram.com/bunexsmashburger" target="_blank" rel="noreferrer"><Icon name="instagram" />Instagram</a>
-          <span>Impressum folgt</span>
+          <Link href="/impressum">Impressum</Link>
           <span>Datenschutz folgt</span>
           <span>{"©\u00a02026 BUNEX"}</span>
           <span>Entwickelt von Rebvar Ebrahimi</span>
