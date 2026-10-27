@@ -20,6 +20,7 @@ The official website for BUNEX Smashburger in Teltow. It presents the restaurant
 - Versioned offline support with a branded, self-contained fallback page
 - Keyboard navigation, semantic landmarks, and mobile ordering bar
 - Branded German 404 page with clear routes back to the homepage and menu
+- Branded, accessible Impressum page with direct operator contact details
 - Static rendering for a lightweight production deployment
 
 ## Design direction
@@ -97,6 +98,7 @@ docs/         Design specifications and implementation plans
 - Opening hours: `lib/opening-hours.mjs`
 - Curated review excerpts: `lib/reviews.mjs`
 - Address, ordering, Maps, and Instagram links: `app/page.tsx`
+- Legal operator and contact details: `app/impressum/page.tsx`. Keep private domestic tax identifiers out of the public page; add a Umsatzsteuer-Identifikationsnummer only when one exists and is legally applicable.
 - Page metadata: `app/layout.tsx`
 - Editorial photo for the “Warum Smash?” section: `public/bunex-smash-process.jpg`
 
