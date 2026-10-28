@@ -35,9 +35,9 @@ export default function ImpressumPage() {
             <div>
               <h2 id="providerTitle">Diensteanbieter</h2>
               <address>
-                <strong>BUNEX Smashburger</strong><br />
+                <strong>BUNEX SMASH BURGER</strong><br />
                 Vahab Ghalandari<br />
-                Potsdamer Str. 61<br />
+                Potsdamer Straße 61<br />
                 14513 Teltow<br />
                 Deutschland
               </address>
@@ -55,9 +55,34 @@ export default function ImpressumPage() {
                 </div>
                 <div>
                   <dt>E-Mail</dt>
-                  <dd><a href="mailto:bunexsmashburger@gmail.com">bunexsmashburger@gmail.com</a></dd>
+                  <dd><a href="mailto:ghalandarishahab@gmail.com">ghalandarishahab@gmail.com</a></dd>
                 </div>
               </dl>
+            </div>
+          </section>
+
+          <section className="legalCard legalCardWide" aria-labelledby="detailsTitle">
+            <span className="sectionIndex" aria-hidden="true">03</span>
+            <div>
+              <h2 id="detailsTitle">Weitere Angaben</h2>
+              <dl className="legalContactList legalDetailsList">
+                <div>
+                  <dt>Steuer-ID</dt>
+                  <dd>36/306/00303</dd>
+                </div>
+                <div>
+                  <dt>Website</dt>
+                  <dd>
+                    <a href="https://bunexsmashburger.online-karte.com" target="_blank" rel="noreferrer">
+                      https://bunexsmashburger.online-karte.com
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+              <p className="legalNotice">
+                Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer
+                Verbraucherschlichtungsstelle weder verpflichtet noch bereit.
+              </p>
             </div>
           </section>
         </div>

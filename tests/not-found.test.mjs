@@ -65,7 +65,7 @@ test('an unknown URL returns the branded 404 with clear recovery routes', { time
   assert.match(html, /href="\/#karte"[^>]*>[^<]*Speisekarte ansehen/);
 });
 
-test('the Impressum publishes the operator and direct contact details without a Steuernummer', { timeout: 60_000 }, async () => {
+test('the Impressum publishes the legal details from the restaurant ordering profile', { timeout: 60_000 }, async () => {
   const [legalResponse, homeResponse] = await Promise.all([
     fetch(`${origin}/impressum`),
     fetch(origin),
@@ -77,9 +77,11 @@ test('the Impressum publishes the operator and direct contact details without a 
 
   assert.equal(legalResponse.status, 200);
   assert.match(legalHtml, /Vahab Ghalandari/);
-  assert.match(legalHtml, /bunexsmashburger@gmail\.com/);
+  assert.match(legalHtml, /ghalandarishahab@gmail\.com/);
   assert.match(legalHtml, /\+49(?:\s|&nbsp;|&#xA0;)*176(?:\s|&nbsp;|&#xA0;)*32646111/);
-  assert.match(legalHtml, /Potsdamer Str\. 61/);
-  assert.doesNotMatch(legalHtml, /Steuernummer/i);
+  assert.match(legalHtml, /Potsdamer Straße 61/);
+  assert.match(legalHtml, /36\/306\/00303/);
+  assert.match(legalHtml, /https:\/\/bunexsmashburger\.online-karte\.com/);
+  assert.match(legalHtml, /weder verpflichtet noch bereit/);
   assert.match(homeHtml, /href="\/impressum"[^>]*>Impressum/);
 });
