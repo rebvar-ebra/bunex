@@ -98,7 +98,7 @@ docs/         Design specifications and implementation plans
 - Opening hours: `lib/opening-hours.mjs`
 - Curated review excerpts: `lib/reviews.mjs`
 - Address, ordering, Maps, and Instagram links: `app/page.tsx`
-- Legal operator and contact details: `app/impressum/page.tsx`. Keep private domestic tax identifiers out of the public page; add a Umsatzsteuer-Identifikationsnummer only when one exists and is legally applicable.
+- Legal operator, contact, tax, website, and dispute-resolution details: `app/impressum/page.tsx`. Keep these synchronized with the restaurant's approved legal profile and re-verify them with the operator before changing the public page.
 - Page metadata: `app/layout.tsx`
 - Editorial photo for the “Warum Smash?” section: `public/bunex-smash-process.jpg`
 
