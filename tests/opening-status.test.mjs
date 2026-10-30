@@ -11,25 +11,22 @@ test('reports closed before the daily 11:30 opening time', () => {
   });
 });
 
-test('reports the 23:00 closing time from Sunday through Thursday', () => {
-  assert.deepEqual(getOpeningStatus(4, 22, 59), {
+test('closes at 22:00 every day', () => {
+  assert.deepEqual(getOpeningStatus(4, 21, 59), {
     isOpen: true,
-    label: 'Geöffnet · bis 23:00',
+    label: 'Geöffnet · bis 22:00',
   });
-  assert.deepEqual(getOpeningStatus(4, 23, 0), {
+  assert.deepEqual(getOpeningStatus(4, 22, 0), {
     isOpen: false,
     label: 'Geschlossen · öffnet morgen um 11:30',
   });
-});
-
-test('keeps the restaurant open until midnight on Friday and Saturday', () => {
-  assert.deepEqual(getOpeningStatus(5, 23, 59), {
+  assert.deepEqual(getOpeningStatus(5, 21, 59), {
     isOpen: true,
-    label: 'Geöffnet · bis 00:00',
+    label: 'Geöffnet · bis 22:00',
   });
-  assert.deepEqual(getOpeningStatus(6, 11, 30), {
-    isOpen: true,
-    label: 'Geöffnet · bis 00:00',
+  assert.deepEqual(getOpeningStatus(6, 22, 0), {
+    isOpen: false,
+    label: 'Geschlossen · öffnet morgen um 11:30',
   });
 });
 
@@ -49,12 +46,12 @@ test('uses Berlin local time for visitors in any timezone', () => {
 
 test('recomputes the displayed status from a fresh date at a closing boundary', () => {
   assert.equal(typeof app.getOpeningStatusForDate, 'function');
-  assert.deepEqual(app.getOpeningStatusForDate(new Date('2026-07-03T21:59:00Z')), {
+  assert.deepEqual(app.getOpeningStatusForDate(new Date('2026-07-03T19:59:00Z')), {
     isOpen: true,
-    label: 'Geöffnet · bis 00:00',
+    label: 'Geöffnet · bis 22:00',
   });
-  assert.deepEqual(app.getOpeningStatusForDate(new Date('2026-07-03T22:00:00Z')), {
+  assert.deepEqual(app.getOpeningStatusForDate(new Date('2026-07-03T20:00:00Z')), {
     isOpen: false,
-    label: 'Geschlossen · öffnet um 11:30',
+    label: 'Geschlossen · öffnet morgen um 11:30',
   });
 });

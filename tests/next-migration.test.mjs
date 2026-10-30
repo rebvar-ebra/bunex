@@ -11,9 +11,9 @@ test('shares opening-hours logic with the Next.js client component', async () =>
   }
 
   assert.equal(typeof module?.getOpeningStatusForDate, 'function');
-  assert.deepEqual(module?.getOpeningStatusForDate(new Date('2026-07-03T22:00:00Z')), {
-    isOpen: false,
-    label: 'Geschlossen · öffnet um 11:30',
+  assert.deepEqual(module?.getOpeningStatusForDate(new Date('2026-07-03T19:59:00Z')), {
+    isOpen: true,
+    label: 'Geöffnet · bis 22:00',
   });
 });
 

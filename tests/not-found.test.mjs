@@ -85,3 +85,12 @@ test('the Impressum publishes the legal details from the restaurant ordering pro
   assert.match(legalHtml, /weder verpflichtet noch bereit/);
   assert.match(homeHtml, /href="\/impressum"[^>]*>Impressum/);
 });
+
+test('the homepage publishes the daily 22:00 closing time', { timeout: 60_000 }, async () => {
+  const response = await fetch(origin);
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /So–Sa(?:<!-- -->)?(?:&nbsp;|\u00a0|\s)+11:30–22:00/);
+  assert.doesNotMatch(html, /11:30–23:00|11:30–00:00/);
+});

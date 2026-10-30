@@ -95,7 +95,7 @@ docs/         Design specifications and implementation plans
 - Menu items, prices, and optional `ingredients` descriptions: `lib/menu.mjs`. Keep ingredient wording aligned with the restaurant menu; do not infer missing ingredients or allergen guarantees from photographs.
 - BUNEX Menu upgrade label and contents: `components/menu-showcase.tsx`
 - Announcement text: `components/announcement-ticker.tsx`; speed and direction: `announcement-scroll` in `app/globals.css`. Keep both visual copies identical for a seamless loop, hide the repeated text from assistive technology, and preserve pause/resume and reduced-motion support.
-- Opening hours: `lib/opening-hours.mjs`
+- Opening hours: `lib/opening-hours.mjs`; the current published schedule is daily from 11:30 to 22:00.
 - Curated review excerpts: `lib/reviews.mjs`
 - Address, ordering, Maps, and Instagram links: `app/page.tsx`
 - Legal operator, contact, tax, website, and dispute-resolution details: `app/impressum/page.tsx`. Keep these synchronized with the restaurant's approved legal profile and re-verify them with the operator before changing the public page.
