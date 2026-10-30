@@ -136,7 +136,7 @@ export default function Home() {
           </div>
           <div className="visitDetails">
             <div><span>Adresse</span><strong>Potsdamer Str. 61<br />14513 Teltow</strong></div>
-            <div><span>Öffnungszeiten</span><strong>So–Do&nbsp; 11:30–23:00<br />Fr–Sa&nbsp; 11:30–00:00</strong></div>
+            <div><span>Öffnungszeiten</span><strong>So–Sa&nbsp; 11:30–22:00</strong></div>
             <div><span>Instagram</span><a className="socialLink" href="https://instagram.com/bunexsmashburger" target="_blank" rel="noreferrer"><Icon name="instagram" />@bunexsmashburger</a></div>
           </div>
         </section>
