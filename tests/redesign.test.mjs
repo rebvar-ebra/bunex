@@ -6,6 +6,7 @@ const pageSource = await readFile(new URL('../app/page.tsx', import.meta.url), '
 const layoutSource = await readFile(new URL('../app/layout.tsx', import.meta.url), 'utf8');
 const stylesheetSource = await readFile(new URL('../app/globals.css', import.meta.url), 'utf8');
 const menuSource = await readFile(new URL('../components/menu-showcase.tsx', import.meta.url), 'utf8');
+const cardSource = await readFile(new URL('../components/ui/trail-card.tsx', import.meta.url), 'utf8');
 const reviewSource = await readFile(new URL('../components/review-wall.tsx', import.meta.url), 'utf8');
 
 test('preserves every homepage section and ordering action', () => {
@@ -95,7 +96,7 @@ test('keeps the photo hero and menu fluid without mobile overflow', () => {
 test('provides rounded menu deck hooks without changing menu memory behavior', () => {
   assert.match(menuSource, /className="memoryPanel memoryCard"/);
   assert.match(menuSource, /className="productGrid menuCardGrid"/);
-  assert.match(menuSource, /className="priceTag"/);
+  assert.match(cardSource, /className="priceTag"/);
   assert.match(menuSource, /localStorage\.getItem\(memoryKey\)/);
   assert.match(menuSource, /localStorage\.removeItem\(memoryKey\)/);
   assert.match(menuSource, /Nur deine letzte Kategorie und dein Favorit—lokal in diesem Browser, ohne Konto\./);
@@ -147,7 +148,7 @@ test('keeps ordering actions and small labels legible', () => {
   assert.match(stylesheetSource, /\.productCard\s*\{[^}]*background:\s*var\(--white\)[^}]*border-radius:\s*var\(--card-radius\)/s);
   assert.match(stylesheetSource, /\.buttonLight\s*\{[^}]*color:\s*var\(--ink\)/s);
   assert.match(stylesheetSource, /\.memoryLabel\s*\{[^}]*color:\s*var\(--ink\)/s);
-  assert.match(stylesheetSource, /\.productInfo > p\s*\{[^}]*color:\s*var\(--ink\)/s);
+  assert.match(stylesheetSource, /\.productDetails p\s*\{[^}]*color:\s*#4f4e48/s);
   assert.match(stylesheetSource, /\.comboBanner > div > p\s*\{[^}]*color:\s*var\(--cream\)/s);
   assert.match(stylesheetSource, /\.comboPrice\s*\{[^}]*color:\s*var\(--cream\)/s);
   assert.match(stylesheetSource, /\.comboBanner > div > span\s*\{[^}]*color:\s*var\(--cream\)[^}]*opacity:\s*1/s);
