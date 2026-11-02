@@ -37,7 +37,8 @@ The responsive system scales from a four-column desktop menu to two columns on t
 - React 19
 - TypeScript
 - Native Web App Manifest, Service Worker, and Cache Storage APIs
-- CSS without a component-library dependency
+- CSS and Tailwind utilities, with reusable UI components in `components/ui/`
+- Framer Motion for the menu-card hover and reduced-motion support
 - Node.js built-in test runner
 
 ## Icons
@@ -93,6 +94,7 @@ docs/         Design specifications and implementation plans
 ## Updating restaurant content
 
 - Menu items, prices, and optional `ingredients` descriptions: `lib/menu.mjs`. Keep ingredient wording aligned with the restaurant menu; do not infer missing ingredients or allergen guarantees from photographs.
+- Menu card layout: `components/ui/trail-card.tsx`; styles: `app/globals.css`. `components/ui/` is the shared location configured for reusable shadcn components.
 - BUNEX Menu upgrade label and contents: `components/menu-showcase.tsx`
 - Announcement text: `components/announcement-ticker.tsx`; speed and direction: `announcement-scroll` in `app/globals.css`. Keep both visual copies identical for a seamless loop, hide the repeated text from assistive technology, and preserve pause/resume and reduced-motion support.
 - Opening hours: `lib/opening-hours.mjs`; the current published schedule is daily from 11:30 to 22:00.

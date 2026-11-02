@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { Icon } from "@/components/icons";
+import { TrailCard } from "@/components/ui/trail-card";
 import { useEffect, useState } from "react";
 import { getMenuItems, menuItems } from "@/lib/menu.mjs";
 import {
@@ -107,37 +107,19 @@ export function MenuShowcase() {
       </p>
 
       <div className="productGrid menuCardGrid">
-        {items.map((item, index) => (
-          <article className="productCard" key={item.name}>
-            <div className="productImage">
-              <Image
-                src={item.image}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 25vw"
-              />
-              <span className="productNumber">{String(index + 1).padStart(2, "0")}</span>
-              <button
-                className="favoriteButton"
-                type="button"
-                aria-label={favorite === item.name ? `${item.name} nicht mehr merken` : `${item.name} als Favoriten merken`}
-                aria-pressed={favorite === item.name}
-                onClick={() => toggleFavorite(item.name)}
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 20.6 3.8 12.7A5.3 5.3 0 0 1 11.3 5l.7.8.7-.8a5.3 5.3 0 0 1 7.5 7.7Z" />
-                </svg>
-              </button>
-            </div>
-            <div className="productInfo">
-              <p>{categories.find(([value]) => value === item.category)?.[1] ?? item.category}</p>
-              <div>
-                <h3>{item.name}</h3>
-                <strong className="priceTag">{item.price}</strong>
-              </div>
-              {item.ingredients ? <p className="productIngredients">{item.ingredients}</p> : null}
-            </div>
-          </article>
+        {items.map((item) => (
+          <TrailCard
+            key={item.name}
+            imageUrl={item.image}
+            imageAlt={item.alt}
+            title={item.name}
+            category={categories.find(([value]) => value === item.category)?.[1] ?? item.category}
+            price={item.price}
+            ingredients={"ingredients" in item ? item.ingredients : undefined}
+            favorite={favorite === item.name}
+            onFavoriteClick={() => toggleFavorite(item.name)}
+            orderUrl={orderUrl}
+          />
         ))}
       </div>
 
